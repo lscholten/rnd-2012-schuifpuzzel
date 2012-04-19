@@ -12,19 +12,17 @@
         android:gravity="center_horizontal"
         android:text="@string/hello"
         android:textSize="30px" />
-
+
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
-
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
     <Button
         android:id="@+id/startGame"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Start!" 
         android:onClick="AboutLaunch"
-        />
+        android:text="Start!" />
 
 </LinearLayout>
