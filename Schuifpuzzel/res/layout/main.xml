@@ -3,14 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+
     <TextView
+        android:id="@+id/titel1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-       	android:gravity="center_horizontal"
-       	android:layout_marginBottom="10px"
-       	android:textSize="30px"
-        android:text="@string/hello" />
+        android:layout_marginBottom="10px"
+        android:gravity="center_horizontal"
+        android:text="@string/hello"
+        android:textSize="30px" />
 
     <Spinner
         android:id="@+id/spinner1"
@@ -23,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start!" 
+        android:onClick="AboutLaunch"
         />
 
 </LinearLayout>
