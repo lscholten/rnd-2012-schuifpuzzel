@@ -4,8 +4,8 @@ import android.graphics.Point;
 
 public class Auto {
 	private Point pos;
-	private int length;
-	private Orientation orientation;
+	private final int length;
+	private final Orientation orientation;
 
 	public static enum Orientation {HORIZONTAAL, VERTICAAL};
 	
@@ -21,5 +21,33 @@ public class Auto {
 		this.pos = pos;
 		this.length = length;
 		this.orientation = orientation;
+	}
+
+	/**
+	 * @return the pos
+	 */
+	public Point getPos() {
+		return pos;
+	}
+
+	/**
+	 * @param pos the pos to set
+	 */
+	public void setPos(Point pos) {
+		this.pos = pos;
+	}
+
+	/**
+	 * @return the orientation
+	 */
+	public Orientation getOrientation() {
+		return orientation;
+	}
+
+	/**
+	 * @return the length
+	 */
+	public int getLength() {
+		return length;
 	}
 }
