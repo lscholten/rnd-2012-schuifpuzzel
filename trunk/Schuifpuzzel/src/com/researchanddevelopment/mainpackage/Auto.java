@@ -9,6 +9,14 @@ public class Auto {
 
 	public static enum Orientation {HORIZONTAAL, VERTICAAL};
 	
+	/**
+	 * Een nieuwe auto maken
+	 * 
+	 * @param pos
+	 * @param width
+	 * @param height
+	 * @param orientation
+	 */
 	public Auto(Point pos, int length, Orientation orientation){
 		this.pos = pos;
 		this.length = length;
