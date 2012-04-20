@@ -3,5 +3,6 @@
 
     <string name="hello">R&amp;D Schuifpuzzel</string>
     <string name="app_name">Schuifpuzzel</string>
+    <string name="StartGameString">Start</string>
 
 </resources>

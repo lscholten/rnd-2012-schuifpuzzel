@@ -18,5 +18,8 @@ public class SchuifpuzzelActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.schuifpuzzel);
 	}
-
+	
+	public void onClickStartGame(View v) {
+		
+	}
 }

@@ -2,5 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/StartGameString"
+		android:onClick="onClickStartButton"
+	/>
 
 </FrameLayout>
