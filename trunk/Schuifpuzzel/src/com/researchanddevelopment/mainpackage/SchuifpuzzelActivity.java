@@ -14,7 +14,7 @@ public class SchuifpuzzelActivity extends Activity {
 		setContentView(R.layout.schuifpuzzel);
 	}
 	
-	public void onClickStartGame(View v) {
+	public void onClickStartButton(View v) {
 		Intent i = new Intent();
 		i.setClass(getApplicationContext(), GameActivity.class);
 		startActivity(i);
