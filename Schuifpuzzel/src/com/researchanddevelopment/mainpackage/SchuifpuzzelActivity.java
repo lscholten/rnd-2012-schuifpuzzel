@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 public class SchuifpuzzelActivity extends Activity {
 
-	private Button b;
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
