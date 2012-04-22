@@ -21,15 +21,17 @@ public class Board {
 		int type;
 		ArrayList<Auto> autoList = new ArrayList<Auto>();
 		try {
-			while ((type = xml.next()) == XmlResourceParser.END_DOCUMENT) {
+			while ((type = xml.next()) != XmlResourceParser.END_DOCUMENT) {
 				if (type == XmlResourceParser.START_TAG) {
-					if (xml.getName().equals("car")) {
+					String name = xml.getName();
+					if (name.equals("car")) {
 						int length = 0, x = 0, y = 0;
 						Auto.Orientation orientatie = Auto.Orientation.HORIZONTAAL;
 
 						int count = xml.getAttributeCount();
 						for (int i = 0; i < count; i++) {
-							if (xml.getAttributeName(i).equals("lenght"))
+							String attr = xml.getAttributeName(i);
+							if (xml.getAttributeName(i).equals("length"))
 								length = xml.getAttributeIntValue(i, 1);
 							else if (xml.getAttributeName(i).equals("x"))
 								x = xml.getAttributeIntValue(i, 0);
@@ -37,7 +39,7 @@ public class Board {
 								y = xml.getAttributeIntValue(i, 0);
 							else if (xml.getAttributeName(i).equals(
 									"orientation")) {
-								if (xml.getAttributeValue(i) == "NZ")
+								if (xml.getAttributeValue(i).equals("NZ"))
 									orientatie = Auto.Orientation.VERTICAAL;
 								else
 									orientatie = Auto.Orientation.HORIZONTAAL;
@@ -50,8 +52,9 @@ public class Board {
 								orientatie));
 					}
 				}
-				this.autos = (Auto[]) autoList.toArray();
+				
 			}
+			this.autos = autoList.toArray(new Auto[0]);
 		} catch (XmlPullParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
