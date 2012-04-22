@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.util.AttributeSet;
 import android.view.View;
 
 public class GameView extends View {
@@ -17,7 +16,7 @@ public class GameView extends View {
 	
 	Board bord;
 	
-	private static final int TILE_SIZE = 78;
+	private static final int TILE_SIZE = 78; 
 	
 	public GameView(Context context) {
 		super(context);
