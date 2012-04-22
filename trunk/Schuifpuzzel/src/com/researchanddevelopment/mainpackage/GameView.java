@@ -15,6 +15,8 @@ public class GameView extends View {
 	Auto auto;
 	Auto auto2;
 	
+	Board bord;
+	
 	private static final int TILE_SIZE = 65;
 	
 	public GameView(Context context) {
@@ -23,6 +25,8 @@ public class GameView extends View {
 		p = new Paint();
 		auto = new Auto(new Point(0,0), 3, Auto.Orientation.HORIZONTAAL);
 		auto2 = new Auto(new Point(4,4), 2, Auto.Orientation.VERTICAAL);
+		bord  = new Board(context.getResources().getXml(R.xml.game));	
+		
 		
 	}
 
@@ -39,8 +43,11 @@ public class GameView extends View {
 				canvas.drawRect(5+TILE_SIZE*i, 5+TILE_SIZE*j, TILE_SIZE*(i+1) , TILE_SIZE*(j+1), p);
 			}
 		}
-		canvas = drawCar(this.auto, canvas);
-		canvas = drawCar(this.auto2, canvas);
+		
+		for(Auto auto : bord.getAutos()) {
+			canvas = drawCar(auto, canvas);
+		}
+		
 		super.onDraw(canvas);
 	}
 	
