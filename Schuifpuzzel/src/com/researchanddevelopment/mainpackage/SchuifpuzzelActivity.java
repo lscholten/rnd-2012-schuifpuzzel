@@ -3,12 +3,15 @@ package com.researchanddevelopment.mainpackage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class SchuifpuzzelActivity extends Activity {
 
-	/* Called on creation
-	 * (non-Javadoc)
+	/*
+	 * Called on creation (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
@@ -22,9 +25,30 @@ public class SchuifpuzzelActivity extends Activity {
 	 * 
 	 * @param v
 	 */
-	public void onClickStartButton(View v) {
+	public void onClickStartButton() {
 		Intent i = new Intent();
 		i.setClass(getApplicationContext(), GameActivity.class);
 		startActivity(i);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+			case R.id.new_game:
+				onClickStartButton();
+				return true;
+			case R.id.difficulty:
+				return true;
+			default:
+				return false;
+		}
 	}
 }
