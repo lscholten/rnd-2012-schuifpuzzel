@@ -42,15 +42,18 @@ public class AutoListener implements OnTouchListener {
 				break;
 
 			case MotionEvent.ACTION_UP:
-				Log.d("AutoListener", "ac null");
-				// coordinaten afronden
-				ac = null;
+				if(ac != null){
+					Log.d("AutoListener", "ac null");
+					ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
+					ac = null;
+				}
 				break;
 
 			case MotionEvent.ACTION_MOVE:
 				if (ac != null) {
 					Log.d("AutoListener", "ac not null");
-
+					
+					
 					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
 						ac.setPos(new PointF(ac.getPos().x + ((e.getX() - start.x) / 60), ac
 								.getPos().y));
