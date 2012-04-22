@@ -94,6 +94,41 @@ public class Auto {
 		return false;
 	}
 	
+	public boolean collide(Auto a){
+		/* TODO
+		 * Check for everything , this is not completely right, so lets fix this
+		 * 
+		 */
+		if(a.equals(this))
+			return false;
+		if(orientation == Orientation.HORIZONTAAL && a.orientation == Orientation.HORIZONTAAL){
+			return ((pos.x < a.pos.x + a.length && pos.x > a.pos.x) ||
+					(pos.x + length > a.pos.x && pos.x + length < a.pos.x + a.length))
+					&& pos.y == a.pos.y;
+		}
+		if(orientation == Orientation.HORIZONTAAL && a.orientation == Orientation.VERTICAAL){
+			return ((pos.x < a.pos.x + 1 && pos.x > a.pos.x) ||
+					(pos.x + length  > a.pos.x && pos.x + length  < a.pos.x + 1))
+					&& pos.y >= a.pos.y && pos.y + 1 <= a.pos.y + a.length;
+		}
+		if(orientation == Orientation.VERTICAAL && a.orientation == Orientation.HORIZONTAAL){
+			return ((pos.y < a.pos.y + 1 && pos.y > a.pos.y) ||
+					(pos.y + length > a.pos.y && pos.y + length < a.pos.y + 1))
+					&& pos.x >= a.pos.x && pos.x + 1 <= a.pos.x + length;
+		}
+		if(orientation == Orientation.VERTICAAL && a.orientation == Orientation.VERTICAAL){
+			return ((pos.y < a.pos.y + a.length && pos.y > a.pos.y) ||
+					(pos.y + length > a.pos.y && pos.y + length < a.pos.y + a.length))
+					&& pos.x == a.pos.x;
+		}
+		
+		if(orientation == Orientation.HORIZONTAAL)
+			return pos.x < 0 || pos.x + length > Board.BOARD_SIZE;
+		else
+			return pos.y < 0 || pos.y + length > Board.BOARD_SIZE;
+				
+	}
+	
 	public boolean touchOnPosition(double x, double y, int TILE_SIZE){
 		float xLeft = this.pos.x;
 		float yTop = this.pos.y;
