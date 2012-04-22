@@ -27,7 +27,8 @@ public class Board {
 					if (name.equals("car")) {
 						int length = 0, x = 0, y = 0;
 						Auto.Orientation orientatie = Auto.Orientation.HORIZONTAAL;
-
+						boolean goalcar = false;
+						
 						int count = xml.getAttributeCount();
 						for (int i = 0; i < count; i++) {
 							String attr = xml.getAttributeName(i);
@@ -43,7 +44,10 @@ public class Board {
 									orientatie = Auto.Orientation.VERTICAAL;
 								else
 									orientatie = Auto.Orientation.HORIZONTAAL;
-							} else
+								
+							} else if (attr.equals("goalcar"))
+								goalcar = true;
+							else
 								throw new XmlPullParserException("XML faal");
 
 						}
