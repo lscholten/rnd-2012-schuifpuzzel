@@ -20,30 +20,45 @@ public class AutoListener implements OnTouchListener {
 	}
 
 	public boolean onTouch(View v, MotionEvent e) {
+
 		Log.d("AutoListener", "Action: " + e.getAction());
 		switch (e.getAction()) {
+
 			case MotionEvent.ACTION_DOWN:
 				Log.d("AutoListener", "ACTION_DOWN");
-				break;
-			case MotionEvent.ACTION_UP:
-				Log.d("AutoListener", "ACTION_UP");
-				break;
-		}
+				Auto activecar = null;
+				System.out.println(v.toString());
 
-		Auto activecar = null;
-		System.out.println(v.toString());
-		for (Auto auto : this.auto) {
-			if (auto.touchOnPosition(e.getX(), e.getY(), BoardView.TILE_SIZE)) {
-				activecar = auto;
+				for (Auto auto : this.auto) {
+					if (auto.touchOnPosition(e.getX(), e.getY(), BoardView.TILE_SIZE)) {
+						activecar = auto;
+						break;
+					}
+				}
+
+				ac = activecar;
 				break;
-			}
+
+			case MotionEvent.ACTION_UP:
+				Log.d("AutoListener", "ac null");
+				ac = null;
+				break;
+
+			case MotionEvent.ACTION_MOVE:
+				if (ac != null) {
+					Log.d("AutoListener", "ac not null");
+
+					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
+						ac.setPos(new PointF((float) (ac.getPos().x + 0.01), ac.getPos().y));
+					} else {
+						Log.d("AutoListener", "Verticaal");
+						ac.setPos(new PointF(ac.getPos().x, (float) (ac.getPos().y + 0.01)));
+					}
+
+				}
+				break;
 		}
-		if (activecar != null) {
-			if (activecar.getOrientation() == Orientation.HORIZONTAAL)
-				activecar.setPos(new PointF(activecar.getPos().x + 1, activecar.getPos().y));
-			else
-				activecar.setPos(new PointF(activecar.getPos().x, activecar.getPos().y + 1));
-		}
+		v.invalidate();
 		return true;
 	}
 
