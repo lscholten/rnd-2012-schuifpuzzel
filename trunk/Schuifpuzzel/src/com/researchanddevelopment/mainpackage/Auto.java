@@ -83,7 +83,7 @@ public class Auto {
 	 * @param positie
 	 * @return is this car on position p?
 	 */
-	public boolean onPosition(PointF p) {
+	public boolean collide(PointF p) {
 		if(this.pos.x == p.x && this.pos.y == p.y)
 			return true;
 		else if(this.orientation.equals(Orientation.HORIZONTAAL) && (p.x - pos.x - length <= 0) && p.y == pos.y) 
