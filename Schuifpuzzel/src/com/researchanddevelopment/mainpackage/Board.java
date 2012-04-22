@@ -41,7 +41,7 @@ public class Board {
 								y = xml.getAttributeIntValue(i, 0);
 							else if (attr.equals(
 									"orientation")) {
-								if (attr.equals("NZ"))
+								if (xml.getAttributeValue(i).equals("NZ"))
 									orientatie = Auto.Orientation.VERTICAAL;
 								else
 									orientatie = Auto.Orientation.HORIZONTAAL;
