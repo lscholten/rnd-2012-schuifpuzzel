@@ -1,18 +1,18 @@
 package com.researchanddevelopment.mainpackage;
 
+import java.util.ArrayList;
+
 import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.view.View;
 
 public class GameView extends View {
 	private Paint p;
-	Auto auto;
-	Auto auto2;
+	ArrayList<AutoView> autoViews;
 	
 	Board bord;
 	
@@ -22,11 +22,8 @@ public class GameView extends View {
 		super(context);
 		// TODO Auto-generated constructor stub
 		p = new Paint();
-		auto = new Auto(new Point(0,0), 3, Auto.Orientation.HORIZONTAAL);
-		auto2 = new Auto(new Point(4,4), 2, Auto.Orientation.VERTICAAL);
 		bord  = new Board(context.getResources().getXml(R.xml.game));	
-		
-		
+		autoViews = new ArrayList<AutoView>();
 	}
 
 	@Override
@@ -44,26 +41,10 @@ public class GameView extends View {
 		}
 		
 		for(Auto auto : bord.getAutos()) {
-			canvas = drawCar(auto, canvas);
+			autoViews.add(new AutoView(this.getContext(), auto, TILE_SIZE));
+			autoViews.get(autoViews.size() - 1).onDraw(canvas);
 		}
 		
 		super.onDraw(canvas);
 	}
-	
-	private Canvas drawCar(Auto a, Canvas c){
-		p.setColor(Color.RED);
-		int xLeft = a.getPos().x;
-		int yTop = a.getPos().y;
-		int length = a.getLength();
-		
-		if(a.getOrientation() == Orientation.HORIZONTAAL )
-			c.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop , TILE_SIZE * (xLeft + length), TILE_SIZE * (yTop + 1), p);
-		else
-			c.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop, TILE_SIZE * (xLeft + 1), TILE_SIZE * (yTop + length), p);
-		
-		return c;
-	}
-	
-	
-
 }
