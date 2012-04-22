@@ -1,12 +1,12 @@
 package com.researchanddevelopment.mainpackage;
 
-import com.researchanddevelopment.mainpackage.Auto.Orientation;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
+
+import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
 public class AutoView extends View {
 	private Auto auto;
@@ -31,11 +31,11 @@ public class AutoView extends View {
 		int length = auto.getLength();
 
 		if (auto.getOrientation() == Orientation.HORIZONTAAL)
-			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop,
-					TILE_SIZE * (xLeft + length), TILE_SIZE * (yTop + 1), p);
+			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop, TILE_SIZE
+					* (xLeft + length), TILE_SIZE * (yTop + 1), p);
 		else
-			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop,
-					TILE_SIZE * (xLeft + 1), TILE_SIZE * (yTop + length), p);
+			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop, TILE_SIZE * (xLeft + 1),
+					TILE_SIZE * (yTop + length), p);
 	}
 
 }
