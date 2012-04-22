@@ -12,24 +12,34 @@ public class Board {
 
 	private ArrayList<Auto> autos;
 
+	/**
+	 * Creates a board from a list of cars
+	 * 
+	 * @param autos
+	 */
 	public Board(ArrayList<Auto> autos) {
 		this.autos = autos;
 
 	}
 
+	/**
+	 * Creates a new Board from an xml file
+	 * 
+	 * @param xml XMLResourceParser to use
+	 */
 	public Board(XmlResourceParser xml) {
 		this.autos = new ArrayList<Auto>();
-		
+
 		int type;
 		try {
 			while ((type = xml.next()) != XmlResourceParser.END_DOCUMENT) {
 				if (type == XmlResourceParser.START_TAG) {
-					
+
 					if (xml.getName().equals("car")) {
 						int length = 0, x = 0, y = 0;
 						Auto.Orientation orientatie = Auto.Orientation.HORIZONTAAL;
 						boolean goalcar = false;
-						
+
 						int count = xml.getAttributeCount();
 						for (int i = 0; i < count; i++) {
 							String attr = xml.getAttributeName(i);
@@ -39,13 +49,12 @@ public class Board {
 								x = xml.getAttributeIntValue(i, 0);
 							else if (attr.equals("y"))
 								y = xml.getAttributeIntValue(i, 0);
-							else if (attr.equals(
-									"orientation")) {
+							else if (attr.equals("orientation")) {
 								if (xml.getAttributeValue(i).equals("NZ"))
 									orientatie = Auto.Orientation.VERTICAAL;
 								else
 									orientatie = Auto.Orientation.HORIZONTAAL;
-								
+
 							} else if (attr.equals("goalcar"))
 								goalcar = true;
 							else
@@ -53,13 +62,13 @@ public class Board {
 
 						}
 
-						autos.add(new Auto(new Point(x, y), length,
-								orientatie, goalcar));
+						autos.add(new Auto(new Point(x, y), length, orientatie,
+								goalcar));
 					}
 				}
-				
+
 			}
-			
+
 		} catch (XmlPullParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +86,8 @@ public class Board {
 	}
 
 	/**
-	 * @param autos the autos to set
+	 * @param autos
+	 *            the autos to set
 	 */
 	public void setAutos(ArrayList<Auto> autos) {
 		this.autos = autos;
