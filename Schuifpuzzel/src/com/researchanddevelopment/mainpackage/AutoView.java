@@ -1,7 +1,5 @@
 package com.researchanddevelopment.mainpackage;
 
-import java.util.ArrayList;
-
 import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
 import android.content.Context;

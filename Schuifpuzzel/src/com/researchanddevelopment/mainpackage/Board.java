@@ -38,7 +38,7 @@ public class Board {
 
 					if (xml.getName().equals("car")) {
 						int length = 0, x = 0, y = 0;
-						Auto.Orientation orientatie = Auto.Orientation.HORIZONTAAL;
+						Auto.Orientation orientatie = null;
 						boolean goalcar = false;
 
 						int count = xml.getAttributeCount();
@@ -53,7 +53,7 @@ public class Board {
 							else if (attr.equals("orientation")) {
 								if (xml.getAttributeValue(i).equals("NZ"))
 									orientatie = Auto.Orientation.VERTICAAL;
-								else
+								else if(xml.getAttributeValue(i).equals("WE"))
 									orientatie = Auto.Orientation.HORIZONTAAL;
 
 							} else if (attr.equals("goalcar"))
