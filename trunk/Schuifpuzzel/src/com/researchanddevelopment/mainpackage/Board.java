@@ -18,6 +18,8 @@ public class Board {
 	}
 
 	public Board(XmlResourceParser xml) {
+		this.autos = new ArrayList<Auto>();
+		
 		int type;
 		try {
 			while ((type = xml.next()) != XmlResourceParser.END_DOCUMENT) {
