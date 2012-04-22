@@ -93,4 +93,20 @@ public class Auto {
 					
 		return false;
 	}
+	
+	public boolean touchOnPosition(double x, double y, int TILE_SIZE){
+		float xLeft = this.pos.x;
+		float yTop = this.pos.y;
+		int length = this.length;
+
+		boolean touched = false;
+		if (this.orientation == Orientation.HORIZONTAAL)
+			touched = 5 + TILE_SIZE * xLeft <= x && 5 + TILE_SIZE * yTop <= y
+					&& TILE_SIZE * (xLeft + length) >= x && TILE_SIZE * (yTop + 1) >= y;
+		if(this.orientation == Orientation.VERTICAAL)
+			touched = 5 + TILE_SIZE * xLeft <= x && 5 + TILE_SIZE * yTop <= y
+				&& TILE_SIZE * (xLeft + 1) >= x && TILE_SIZE * (yTop + length) >= y;
+				
+		return touched;
+	}
 }
