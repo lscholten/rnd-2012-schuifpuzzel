@@ -4,5 +4,41 @@
         length="3"
         orientation="NZ"
         x="0"
+        y="1" />
+    <car 
+        length="2"
+        orientation="WE"
+        x="0"
         y="0" />
+    <car 
+        length="2"
+        orientation="NZ"
+        x="0"
+        y="4" />
+    <car 
+        goalcar="goalcar"
+        length="2"
+        x="1"
+        y="2"
+        orientation="WE" />
+    <car 
+        length="3"
+        x="2"
+        y="5"
+        orientation="WE" />
+    <car
+        length="3"
+        x="3"
+        y="2"
+        orientation="NZ" />
+    <car
+        length="3"
+        x="5"
+        y="0"
+        orientation="NZ" />
+    <car
+        length="2"
+        x="4"
+        y="4"
+        orientation="WE" />
 </game>
