@@ -107,7 +107,7 @@ public class Board {
 	public void setBoardView(BoardView boardView) {
 		this.boardView = boardView;
 		boardView.addAutos(autos);
-		
-		
 	}
+	
+	
 }

@@ -73,4 +73,20 @@ public class Auto {
 		return goalcar;
 	}
 	
+	/**
+	 * Find out if a car is on a position
+	 * 
+	 * @param positie
+	 * @return is this car on position p?
+	 */
+	public boolean onPosition(Point p) {
+		if(this.pos.x == p.x && this.pos.y == p.y)
+			return true;
+		else if(this.orientation.equals(Orientation.HORIZONTAAL) && (p.x - pos.x - length <= 0) && p.y == pos.y) 
+			return true;
+		else if(this.orientation.equals(Orientation.VERTICAAL) && (p.y - pos.y - length <= 0 ) && p.x == pos.x)
+			return true;
+					
+		return false;
+	}
 }
