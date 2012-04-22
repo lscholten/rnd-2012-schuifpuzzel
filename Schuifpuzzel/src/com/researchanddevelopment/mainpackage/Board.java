@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlPullParserException;
 import android.content.res.XmlResourceParser;
-import android.graphics.Point;
+import android.graphics.PointF;
 
 public class Board {
 	public static final int BOARD_SIZE = 6;
@@ -63,7 +63,7 @@ public class Board {
 
 						}
 
-						autos.add(new Auto(new Point(x, y), length, orientatie,
+						autos.add(new Auto(new PointF(x, y), length, orientatie,
 								goalcar));
 					}
 				}

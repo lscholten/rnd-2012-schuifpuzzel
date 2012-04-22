@@ -28,8 +28,8 @@ public class AutoView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		p.setColor(auto.isGoalcar() ? Color.RED : Color.YELLOW);
-		int xLeft = auto.getPos().x;
-		int yTop = auto.getPos().y;
+		float xLeft = auto.getPos().x;
+		float yTop = auto.getPos().y;
 		int length = auto.getLength();
 
 		if (auto.getOrientation() == Orientation.HORIZONTAAL)
