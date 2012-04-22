@@ -8,7 +8,7 @@ import android.content.res.XmlResourceParser;
 import android.graphics.Point;
 
 public class Board {
-	public static final int BOARD_SIZE = 7;
+	public static final int BOARD_SIZE = 6;
 
 	private ArrayList<Auto> autos;
 

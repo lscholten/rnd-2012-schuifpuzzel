@@ -17,7 +17,7 @@ public class GameView extends View {
 	
 	Board bord;
 	
-	private static final int TILE_SIZE = 65;
+	private static final int TILE_SIZE = 78;
 	
 	public GameView(Context context) {
 		super(context);
@@ -38,7 +38,7 @@ public class GameView extends View {
 		//Grid tekenen
 		canvas.drawRect(0,0, TILE_SIZE*Board.BOARD_SIZE+5,TILE_SIZE*Board.BOARD_SIZE+5, p);		
 		p.setColor(Color.BLACK);
-		for(int i = 0; i < 7; ++i) {
+		for(int i = 0; i < Board.BOARD_SIZE; ++i) {
 			for(int j = 0; j < Board.BOARD_SIZE; ++j) {
 				canvas.drawRect(5+TILE_SIZE*i, 5+TILE_SIZE*j, TILE_SIZE*(i+1) , TILE_SIZE*(j+1), p);
 			}
