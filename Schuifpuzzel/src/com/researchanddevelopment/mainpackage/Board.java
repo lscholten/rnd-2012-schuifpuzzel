@@ -24,8 +24,8 @@ public class Board {
 		try {
 			while ((type = xml.next()) != XmlResourceParser.END_DOCUMENT) {
 				if (type == XmlResourceParser.START_TAG) {
-					String name = xml.getName();
-					if (name.equals("car")) {
+					
+					if (xml.getName().equals("car")) {
 						int length = 0, x = 0, y = 0;
 						Auto.Orientation orientatie = Auto.Orientation.HORIZONTAAL;
 						boolean goalcar = false;
@@ -33,15 +33,15 @@ public class Board {
 						int count = xml.getAttributeCount();
 						for (int i = 0; i < count; i++) {
 							String attr = xml.getAttributeName(i);
-							if (xml.getAttributeName(i).equals("length"))
+							if (attr.equals("length"))
 								length = xml.getAttributeIntValue(i, 1);
-							else if (xml.getAttributeName(i).equals("x"))
+							else if (attr.equals("x"))
 								x = xml.getAttributeIntValue(i, 0);
-							else if (xml.getAttributeName(i).equals("y"))
+							else if (attr.equals("y"))
 								y = xml.getAttributeIntValue(i, 0);
-							else if (xml.getAttributeName(i).equals(
+							else if (attr.equals(
 									"orientation")) {
-								if (xml.getAttributeValue(i).equals("NZ"))
+								if (attr.equals("NZ"))
 									orientatie = Auto.Orientation.VERTICAAL;
 								else
 									orientatie = Auto.Orientation.HORIZONTAAL;
@@ -54,7 +54,7 @@ public class Board {
 						}
 
 						autos.add(new Auto(new Point(x, y), length,
-								orientatie));
+								orientatie, goalcar));
 					}
 				}
 				

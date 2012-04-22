@@ -11,7 +11,7 @@ public class Auto {
 	public static enum Orientation {HORIZONTAAL, VERTICAAL};
 	
 	/**
-	 * Een nieuwe auto maken
+	 * Een nieuwe auto maken - nooit goalcar
 	 * 
 	 * @param pos
 	 * @param width
@@ -25,6 +25,14 @@ public class Auto {
 		
 	}
 	
+	/**
+	 * Nieuwe auto maken
+	 * 
+	 * @param pos
+	 * @param length
+	 * @param orientation
+	 * @param goalcar
+	 */
 	public Auto(Point pos, int length, Orientation orientation, boolean goalcar) {
 		this(pos, length, orientation);
 		this.goalcar = goalcar;
@@ -57,4 +65,12 @@ public class Auto {
 	public int getLength() {
 		return length;
 	}
+	
+	/**
+	 * @return is this the goal car
+	 */
+	public boolean isGoalcar() {
+		return goalcar;
+	}
+	
 }
