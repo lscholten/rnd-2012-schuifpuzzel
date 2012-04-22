@@ -6,6 +6,7 @@ public class Auto {
 	private Point pos;
 	private final int length;
 	private final Orientation orientation;
+	private boolean goalcar = false;
 
 	public static enum Orientation {HORIZONTAAL, VERTICAAL};
 	
@@ -21,6 +22,12 @@ public class Auto {
 		this.pos = pos;
 		this.length = length;
 		this.orientation = orientation;
+		
+	}
+	
+	public Auto(Point pos, int length, Orientation orientation, boolean goalcar) {
+		this(pos, length, orientation);
+		this.goalcar = goalcar;
 	}
 
 	/**
