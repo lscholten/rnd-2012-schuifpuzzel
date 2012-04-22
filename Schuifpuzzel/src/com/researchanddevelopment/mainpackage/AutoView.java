@@ -1,5 +1,7 @@
 package com.researchanddevelopment.mainpackage;
 
+import java.util.ArrayList;
+
 import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
 import android.content.Context;
@@ -12,29 +14,30 @@ public class AutoView extends View {
 	private Auto auto;
 	Paint p;
 	private static int TILE_SIZE;
-	
-	
+
 	public AutoView(Context context, Auto a, int tile_size) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		this.auto = a;
 		this.p = new Paint();
-		
+
 		AutoView.TILE_SIZE = tile_size;
-		
+
 	}
-	
+
 	@Override
-	protected void onDraw(Canvas canvas){
+	protected void onDraw(Canvas canvas) {
 		p.setColor(Color.RED);
 		int xLeft = auto.getPos().x;
 		int yTop = auto.getPos().y;
 		int length = auto.getLength();
-		
-		if(auto.getOrientation() == Orientation.HORIZONTAAL )
-			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop , TILE_SIZE * (xLeft + length), TILE_SIZE * (yTop + 1), p);
+
+		if (auto.getOrientation() == Orientation.HORIZONTAAL)
+			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop,
+					TILE_SIZE * (xLeft + length), TILE_SIZE * (yTop + 1), p);
 		else
-			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop, TILE_SIZE * (xLeft + 1), TILE_SIZE * (yTop + length), p);
+			canvas.drawRect(5 + TILE_SIZE * xLeft, 5 + TILE_SIZE * yTop,
+					TILE_SIZE * (xLeft + 1), TILE_SIZE * (yTop + length), p);
 	}
 
 }
