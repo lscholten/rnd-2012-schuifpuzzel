@@ -1,9 +1,9 @@
 package com.researchanddevelopment.mainpackage;
 
-import android.graphics.Point;
+import android.graphics.PointF;
 
 public class Auto {
-	private Point pos;
+	private PointF pos;
 	private final int length;
 	private final Orientation orientation;
 	private boolean goalcar = false;
@@ -18,7 +18,7 @@ public class Auto {
 	 * @param height
 	 * @param orientation
 	 */
-	public Auto(Point pos, int length, Orientation orientation){
+	public Auto(PointF pos, int length, Orientation orientation){
 		this.pos = pos;
 		this.length = length;
 		this.orientation = orientation;
@@ -33,7 +33,7 @@ public class Auto {
 	 * @param orientation
 	 * @param goalcar
 	 */
-	public Auto(Point pos, int length, Orientation orientation, boolean goalcar) {
+	public Auto(PointF pos, int length, Orientation orientation, boolean goalcar) {
 		this(pos, length, orientation);
 		this.goalcar = goalcar;
 	}
@@ -41,14 +41,14 @@ public class Auto {
 	/**
 	 * @return the pos
 	 */
-	public Point getPos() {
+	public PointF getPos() {
 		return pos;
 	}
 
 	/**
 	 * @param pos the pos to set
 	 */
-	public void setPos(Point pos) {
+	public void setPos(PointF pos) {
 		this.pos = pos;
 	}
 
@@ -79,7 +79,7 @@ public class Auto {
 	 * @param positie
 	 * @return is this car on position p?
 	 */
-	public boolean onPosition(Point p) {
+	public boolean onPosition(PointF p) {
 		if(this.pos.x == p.x && this.pos.y == p.y)
 			return true;
 		else if(this.orientation.equals(Orientation.HORIZONTAAL) && (p.x - pos.x - length <= 0) && p.y == pos.y) 
