@@ -12,6 +12,7 @@ import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
 public class AutoListener implements OnTouchListener {
 
+	private PointF start;
 	private Auto ac;
 	ArrayList<Auto> auto;
 
@@ -37,10 +38,12 @@ public class AutoListener implements OnTouchListener {
 				}
 
 				ac = activecar;
+				start = new PointF(e.getX(), e.getY());
 				break;
 
 			case MotionEvent.ACTION_UP:
 				Log.d("AutoListener", "ac null");
+				// coordinaten afronden
 				ac = null;
 				break;
 
@@ -49,13 +52,16 @@ public class AutoListener implements OnTouchListener {
 					Log.d("AutoListener", "ac not null");
 
 					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
-						ac.setPos(new PointF((float) (ac.getPos().x + 0.01), ac.getPos().y));
+						ac.setPos(new PointF(ac.getPos().x + ((e.getX() - start.x) / 60), ac
+								.getPos().y));
 					} else {
 						Log.d("AutoListener", "Verticaal");
-						ac.setPos(new PointF(ac.getPos().x, (float) (ac.getPos().y + 0.01)));
+						ac.setPos(new PointF(ac.getPos().x, ac.getPos().y
+								+ ((e.getY() - start.y) / 60)));
 					}
 
 				}
+				start = new PointF(e.getX(), e.getY());
 				break;
 		}
 		v.invalidate();
