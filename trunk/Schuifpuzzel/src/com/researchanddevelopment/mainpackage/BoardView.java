@@ -1,8 +1,7 @@
 package com.researchanddevelopment.mainpackage;
 
-import java.util.ArrayList;
 
-import com.researchanddevelopment.mainpackage.Auto.Orientation;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,20 +9,19 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-public class GameView extends View {
+public class BoardView extends View {
 	private Paint p;
-	ArrayList<AutoView> autoViews;
+
+	ArrayList<View> autoViews;
 	
-	Board bord;
+	public static final int TILE_SIZE = 78; 
 	
-	private static final int TILE_SIZE = 78; 
-	
-	public GameView(Context context) {
+	public BoardView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		p = new Paint();
-		bord  = new Board(context.getResources().getXml(R.xml.game));	
-		autoViews = new ArrayList<AutoView>();
+		
+		autoViews = new ArrayList<View>();
 	}
 
 	@Override
@@ -40,11 +38,21 @@ public class GameView extends View {
 			}
 		}
 		
-		for(Auto auto : bord.getAutos()) {
-			autoViews.add(new AutoView(this.getContext(), auto, TILE_SIZE));
-			autoViews.get(autoViews.size() - 1).onDraw(canvas);
+
+		for(View av : autoViews) {
+			((AutoView)av).onDraw(canvas);
 		}
 		
 		super.onDraw(canvas);
 	}
+
+	public void addAutos(ArrayList<Auto> autos) {
+		for(Auto auto : autos){
+			AutoView av = new AutoView(this.getContext(), auto, TILE_SIZE);
+			this.autoViews.add(av);
+		}
+		this.addTouchables(autoViews);
+		
+	}
+
 }

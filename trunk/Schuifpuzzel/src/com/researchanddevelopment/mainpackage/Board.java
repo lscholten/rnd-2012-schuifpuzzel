@@ -11,6 +11,7 @@ public class Board {
 	public static final int BOARD_SIZE = 6;
 
 	private ArrayList<Auto> autos;
+	private BoardView boardView;
 
 	/**
 	 * Creates a board from a list of cars
@@ -21,7 +22,7 @@ public class Board {
 		this.autos = autos;
 
 	}
-
+	
 	/**
 	 * Creates a new Board from an xml file
 	 * 
@@ -91,5 +92,22 @@ public class Board {
 	 */
 	public void setAutos(ArrayList<Auto> autos) {
 		this.autos = autos;
+	}
+
+	/**
+	 * @return the boardView
+	 */
+	public BoardView getBoardView() {
+		return boardView;
+	}
+
+	/**
+	 * @param boardView the boardView to set
+	 */
+	public void setBoardView(BoardView boardView) {
+		this.boardView = boardView;
+		boardView.addAutos(autos);
+		
+		
 	}
 }
