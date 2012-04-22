@@ -10,16 +10,15 @@ import android.graphics.Point;
 public class Board {
 	public static final int BOARD_SIZE = 7;
 
-	private Auto[] autos;
+	private ArrayList<Auto> autos;
 
-	public Board(Auto[] autos) {
+	public Board(ArrayList<Auto> autos) {
 		this.autos = autos;
 
 	}
 
 	public Board(XmlResourceParser xml) {
 		int type;
-		ArrayList<Auto> autoList = new ArrayList<Auto>();
 		try {
 			while ((type = xml.next()) != XmlResourceParser.END_DOCUMENT) {
 				if (type == XmlResourceParser.START_TAG) {
@@ -52,13 +51,13 @@ public class Board {
 
 						}
 
-						autoList.add(new Auto(new Point(x, y), length,
+						autos.add(new Auto(new Point(x, y), length,
 								orientatie));
 					}
 				}
 				
 			}
-			this.autos = autoList.toArray(new Auto[0]);
+			
 		} catch (XmlPullParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,14 +70,14 @@ public class Board {
 	/**
 	 * @return the autos
 	 */
-	public Auto[] getAutos() {
+	public ArrayList<Auto> getAutos() {
 		return autos;
 	}
 
 	/**
 	 * @param autos the autos to set
 	 */
-	public void setAutos(Auto[] autos) {
+	public void setAutos(ArrayList<Auto> autos) {
 		this.autos = autos;
 	}
 }
