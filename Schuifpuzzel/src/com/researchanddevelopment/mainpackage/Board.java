@@ -76,6 +76,9 @@ public class Board {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			System.err.println("Fix your xml!");
+			e.printStackTrace();
 		}
 	}
 

@@ -19,9 +19,13 @@ public class Auto {
 	 * @param orientation
 	 */
 	public Auto(PointF pos, int length, Orientation orientation){
+		if(orientation == null || length <= 2 || pos.x < 0 || pos.x > Board.BOARD_SIZE || pos.y < 0 || pos.y > Board.BOARD_SIZE) 
+			throw new IllegalArgumentException("Fix your arguments");
+		
 		this.pos = pos;
 		this.length = length;
 		this.orientation = orientation;
+		
 		
 	}
 	
