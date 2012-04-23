@@ -4,6 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * Splash screen
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class Splash extends Activity {
 	@Override
 	protected void onCreate(Bundle bundle) {

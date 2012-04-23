@@ -12,6 +12,13 @@ import android.view.View.OnTouchListener;
 
 import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
+
+/**
+ * Events voor autos, handelt beweging af
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class AutoListener implements OnTouchListener {
 
 	private PointF start;

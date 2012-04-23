@@ -8,6 +8,12 @@ import android.view.View;
 
 import com.researchanddevelopment.mainpackage.Auto.Orientation;
 
+/**
+ * View voor alle autos
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class AutoView extends View {
 	private Auto auto;
 	Paint p;

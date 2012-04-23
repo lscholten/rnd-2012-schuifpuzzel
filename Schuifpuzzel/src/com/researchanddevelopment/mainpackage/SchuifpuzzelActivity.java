@@ -8,6 +8,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ * Het hoofdmenu
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class SchuifpuzzelActivity extends Activity {
 
 	/*
