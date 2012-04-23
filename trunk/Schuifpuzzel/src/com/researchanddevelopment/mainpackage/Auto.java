@@ -1,7 +1,6 @@
 package com.researchanddevelopment.mainpackage;
 
 import android.graphics.PointF;
-import android.graphics.Paint.Align;
 
 /**
  * @author Thom
@@ -12,6 +11,7 @@ public class Auto {
 	private final int length;
 	private final Orientation orientation;
 	private boolean goalcar = false;
+	private int moves = 0;
 
 	public static enum Orientation {HORIZONTAAL, VERTICAAL};
 	
@@ -133,8 +133,11 @@ public class Auto {
 				
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean outOfBounds(){
-		if(isGoalcar())
+		if(goalcar)
 			return pos.x < 0;
 		if(orientation == Orientation.HORIZONTAAL)
 			return pos.x < 0 || pos.x + length > Board.BOARD_SIZE;
@@ -142,6 +145,21 @@ public class Auto {
 			return pos.y < 0 || pos.y + length > Board.BOARD_SIZE;	
 	}
 	
+	/**
+	 * Find out if the car is in the goal position
+	 * 
+	 * @return is this the goal position?
+	 */
+	public boolean isWinPosition() {
+		return goalcar && pos.x  + length/2 >= Board.BOARD_SIZE;
+	}
+	
+	/**
+	 * @param x
+	 * @param y
+	 * @param TILE_SIZE
+	 * @return
+	 */
 	public boolean touchOnPosition(double x, double y, int TILE_SIZE){
 		float xLeft = this.pos.x;
 		float yTop = this.pos.y;
@@ -156,5 +174,13 @@ public class Auto {
 				&& TILE_SIZE * (xLeft + 1) >= x && TILE_SIZE * (yTop + length) >= y;
 				
 		return touched;
+	}
+	
+	public void addMove() {
+		moves ++;
+	}
+	
+	public int getMoves() {
+		return moves;
 	}
 }

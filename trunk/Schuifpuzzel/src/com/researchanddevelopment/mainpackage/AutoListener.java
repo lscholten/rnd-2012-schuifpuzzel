@@ -44,9 +44,11 @@ public class AutoListener implements OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				if(ac != null){
 					Log.d("AutoListener", "ac null");
+					ac.addMove();
 					ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
 					ac = null;
 				}
+				
 				break;
 
 			case MotionEvent.ACTION_MOVE:
@@ -77,6 +79,9 @@ public class AutoListener implements OnTouchListener {
 					}
 					if(isCollision || ac.outOfBounds()){
 						ac.setPos(oldPosition);
+					} else if (ac.isWinPosition()) {
+						ac.setPos(new PointF(Board.BOARD_SIZE-1, 2F));
+						System.out.println("win + moves: " + ac.getMoves());
 					}
 
 				}
