@@ -13,18 +13,38 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class Database extends SQLiteOpenHelper {
 
+	/**
+	 * Tabel naam
+	 */
 	public static final String DATABASE_TABLE_NAME = "highscores";
+	
+	/**
+	 * Database naam 
+	 */
 	private static final String DATABASE_NAME = "rushhourdb";
 	
+	/**
+	 * Tabel create query
+	 */
 	private static final String DATABASE_TABLE_CREATE_QUERY = "CREATE TABLE "
 			+ DATABASE_TABLE_NAME + "( gameid INTEGER, least_moves INTEGER);";
+	
+	/**
+	 * Versie van de db
+	 */
 	private static final int DATABASE_VERSION = 1;
 
+	/**
+	 * Nieuwe db maken
+	 * @param context
+	 */
 	public Database(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase arg0) {
 		arg0.execSQL(DATABASE_TABLE_CREATE_QUERY);
@@ -37,6 +57,9 @@ public class Database extends SQLiteOpenHelper {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
 	}

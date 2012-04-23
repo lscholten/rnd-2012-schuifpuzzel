@@ -11,6 +11,9 @@ import android.os.Bundle;
  *
  */
 public class Splash extends Activity {
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle bundle) {
 		// TODO Auto-generated method stub
@@ -33,6 +36,9 @@ public class Splash extends Activity {
 		timer.start();
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub

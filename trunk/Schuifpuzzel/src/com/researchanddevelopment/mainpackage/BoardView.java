@@ -14,21 +14,56 @@ import android.view.View;
  * View van het bord
  * 
  * @author Paranoid Android
- *
+ * 
  */
 public class BoardView extends View {
 
+	/**
+	 * Views van de autos
+	 */
 	ArrayList<View> autoViews;
+	
+	/**
+	 * gewonnen?
+	 */
 	private boolean win = false;
+	
+	/**
+	 * Is een highscore?
+	 */
 	private boolean highScore = false;
+	
+	/**
+	 * Zetten
+	 */
 	private int moves;
+	
+	/**
+	 * Board paint
+	 */
 	private Paint boardp;
+	
+	/** 
+	 * Grid paint
+	 */
 	private Paint gridp;
+
+	/**
+	 * finish paint
+	 */
 	private Paint finishp;
+
+	/**
+	 * Text paint
+	 */
 	private Paint textp;
 
 	public static final int TILE_SIZE = 78;
 
+	/**
+	 * Nieuwe view maken
+	 * @param context
+	 */
 	public BoardView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -39,13 +74,16 @@ public class BoardView extends View {
 		autoViews = new ArrayList<View>();
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View#onDraw(android.graphics.Canvas)
+	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
-
 		// Grid tekenen
 		canvas.drawRect(0, 0, TILE_SIZE * Board.BOARD_SIZE + 5, TILE_SIZE
 				* Board.BOARD_SIZE + 5, gridp);
 		for (int i = 0; i < Board.BOARD_SIZE; ++i) {
+	
 			for (int j = 0; j < Board.BOARD_SIZE; ++j) {
 				canvas.drawRect(5 + TILE_SIZE * i, 5 + TILE_SIZE * j, TILE_SIZE
 						* (i + 1), TILE_SIZE * (j + 1), boardp);
@@ -62,10 +100,12 @@ public class BoardView extends View {
 		if (win) {
 			canvas.drawText("You win in " + moves + " moves", 40,
 					7 * TILE_SIZE, textp);
-			if(highScore){
-				canvas.drawText("You broke your previous highscore", 40, 8*TILE_SIZE, textp);
-				Bitmap bmp = BitmapFactory.decodeResource(this.getResources(), R.drawable.not_bad);
-				canvas.drawBitmap(bmp, 150, 8*TILE_SIZE + 5, textp);
+			if (highScore) {
+				canvas.drawText("You broke your previous highscore", 40,
+						8 * TILE_SIZE, textp);
+				Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
+						R.drawable.not_bad);
+				canvas.drawBitmap(bmp, 150, 8 * TILE_SIZE + 5, textp);
 			}
 		} else {
 
@@ -75,6 +115,10 @@ public class BoardView extends View {
 		super.onDraw(canvas);
 	}
 
+	/**
+	 * Autos toevoegen aan view
+	 * @param autos
+	 */
 	public void addAutos(ArrayList<Auto> autos) {
 		for (Auto auto : autos) {
 			AutoView av = new AutoView(this.getContext(), auto, TILE_SIZE);
@@ -84,15 +128,26 @@ public class BoardView extends View {
 
 	}
 
+	/**
+	 * i moves erbij
+	 * @param i
+	 */
 	public void updateMoves(int i) {
 		this.moves = i;
 	}
 
+	/**
+	 * Win
+	 * @param b
+	 */
 	public void drawWin(boolean b) {
 		highScore = b;
 		win = true;
 	}
 
+	/**
+	 * Paints initen
+	 */
 	private void initPaint() {
 		boardp = new Paint();
 
@@ -110,7 +165,7 @@ public class BoardView extends View {
 
 		textp = new Paint();
 		textp.setTextSize(20);
-		textp.setColor(Color.GREEN); 
+		textp.setColor(Color.GREEN);
 
 	}
 
