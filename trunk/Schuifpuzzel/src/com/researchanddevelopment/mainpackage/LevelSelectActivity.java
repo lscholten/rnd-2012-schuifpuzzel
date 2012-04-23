@@ -56,4 +56,10 @@ public class LevelSelectActivity extends PreferenceActivity {
 		
 	}
 	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		finish();
+	}
+	
 }
