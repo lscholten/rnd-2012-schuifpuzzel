@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">Rush Hour</string>
-    <string name="StartGameString">Start</string>
-    <string name="application_description">Rush Hour game</string>
-
+<?xml version="1.0" encoding="utf-8" ?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<string name="app_name">Rush Hour</string>
+	<string name="StartGameString">Start</string>
+	<string name="application_description">Rush Hour game</string>
 </resources>
