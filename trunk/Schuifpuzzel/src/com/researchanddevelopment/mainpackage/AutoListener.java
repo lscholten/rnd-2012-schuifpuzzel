@@ -4,11 +4,8 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Canvas;
 import android.graphics.PointF;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
