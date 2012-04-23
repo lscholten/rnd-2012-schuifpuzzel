@@ -3,6 +3,10 @@ package com.researchanddevelopment.mainpackage;
 import android.graphics.PointF;
 import android.graphics.Paint.Align;
 
+/**
+ * @author Thom
+ *
+ */
 public class Auto {
 	private PointF pos;
 	private final int length;
@@ -93,11 +97,13 @@ public class Auto {
 		return false;
 	}
 	
+	/**
+	 * Check for collision
+	 * 
+	 * @param a
+	 * @return
+	 */
 	public boolean collide(Auto a){
-		/* TODO
-		 * Check for everything , this is not completely right, so lets fix this
-		 * 
-		 */
 		if(a.equals(this))
 			return false;
 		if(orientation == Orientation.HORIZONTAAL && a.orientation == Orientation.HORIZONTAAL){
