@@ -45,7 +45,9 @@
                 
             </intent-filter>
         </activity>
-        <activity android:name="LevelSelectActivity">
+        <activity android:name="LevelSelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="com.researchanddevelopment.mainpackage.LEVELSELECTACTIVITY"/>
                 <category android:name="android.intent.category.DEFAULT"/>

@@ -21,14 +21,10 @@ public class AutoListener implements OnTouchListener {
 	}
 
 	public boolean onTouch(View v, MotionEvent e) {
-
-		Log.d("AutoListener", "Action: " + e.getAction());
 		switch (e.getAction()) {
 
 			case MotionEvent.ACTION_DOWN:
-				Log.d("AutoListener", "ACTION_DOWN");
 				Auto activecar = null;
-				System.out.println(v.toString());
 
 				for (Auto auto : this.auto) {
 					if (auto.touchOnPosition(e.getX(), e.getY(), BoardView.TILE_SIZE)) {
@@ -43,7 +39,6 @@ public class AutoListener implements OnTouchListener {
 
 			case MotionEvent.ACTION_UP:
 				if(ac != null){
-					Log.d("AutoListener", "ac null");
 					ac.addMove();
 					ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
 					ac = null;
@@ -53,25 +48,30 @@ public class AutoListener implements OnTouchListener {
 
 			case MotionEvent.ACTION_MOVE:
 				if (ac != null) {
-					Log.d("AutoListener", "ac not null");
 					
 					boolean isCollision = false;
 					PointF oldPosition = ac.getPos();
 					PointF newPosition;
+					float movement;
 					
 					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
-						newPosition = new PointF(ac.getPos().x + ((e.getX() - start.x) / BoardView.TILE_SIZE), ac
+						movement = e.getX() - start.x; 
+						movement = (movement > BoardView.TILE_SIZE) ? BoardView.TILE_SIZE : movement;
+						newPosition = new PointF(ac.getPos().x + (movement) / BoardView.TILE_SIZE, ac
 								.getPos().y);
+						
 					} else {
+						movement = e.getY() - start.y; 
+						movement = (movement > BoardView.TILE_SIZE) ? BoardView.TILE_SIZE : movement;
 						newPosition = (new PointF(ac.getPos().x, ac.getPos().y
-								+ ((e.getY() - start.y) / BoardView.TILE_SIZE)));
+								+ ((movement) / BoardView.TILE_SIZE)));
 					}
 					
 					ac.setPos(newPosition);
 					
 					
 					for(Auto auto: this.auto){
-						if(ac.collide(auto)){
+						if(ac.collide(auto, (int)Math.signum(movement))){
 							isCollision = true;
 							ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
 							break;
