@@ -1,6 +1,5 @@
 package com.researchanddevelopment.mainpackage;
 
-import android.app.Activity;
 import android.graphics.PointF;
 
 /**

@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 
 public class BoardView extends View {
-	private Paint p;
 
 	ArrayList<View> autoViews;
 	private boolean win = false;
