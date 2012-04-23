@@ -54,6 +54,20 @@ public class AutoListener implements OnTouchListener {
 					Log.d("AutoListener", "ac not null");
 					
 					boolean isCollision = false;
+					PointF oldPosition = ac.getPos();
+					PointF newPosition;
+					
+					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
+						newPosition = new PointF(ac.getPos().x + ((e.getX() - start.x) / 60), ac
+								.getPos().y);
+					} else {
+						newPosition = (new PointF(ac.getPos().x, ac.getPos().y
+								+ ((e.getY() - start.y) / 60)));
+					}
+					
+					ac.setPos(newPosition);
+					
+					
 					for(Auto auto: this.auto){
 						if(ac.collide(auto)){
 							isCollision = true;
@@ -61,15 +75,8 @@ public class AutoListener implements OnTouchListener {
 							break;
 						}
 					}
-					if(!isCollision){
-						if (ac.getOrientation() == Orientation.HORIZONTAAL) {
-							ac.setPos(new PointF(ac.getPos().x + ((e.getX() - start.x) / 60), ac
-									.getPos().y));
-						} else {
-							Log.d("AutoListener", "Verticaal");
-							ac.setPos(new PointF(ac.getPos().x, ac.getPos().y
-									+ ((e.getY() - start.y) / 60)));
-						}
+					if(isCollision || ac.outOfBounds()){
+						ac.setPos(oldPosition);
 					}
 
 				}
