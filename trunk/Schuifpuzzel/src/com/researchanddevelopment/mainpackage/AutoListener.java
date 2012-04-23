@@ -131,7 +131,6 @@ public class AutoListener implements OnTouchListener {
 		
 		b.drawWin((row > 0));
 		dbase.close();
-		
 
 		Thread timer = new Thread() {
 			public void run() {
@@ -147,7 +146,6 @@ public class AutoListener implements OnTouchListener {
 			}
 		};
 		timer.start();
-		
 	}
 
 }

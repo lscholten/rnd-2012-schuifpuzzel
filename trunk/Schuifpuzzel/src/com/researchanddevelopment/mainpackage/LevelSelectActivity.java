@@ -56,11 +56,4 @@ public class LevelSelectActivity extends PreferenceActivity {
 		
 	}
 	
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		finish();
-	}
-	
 }
