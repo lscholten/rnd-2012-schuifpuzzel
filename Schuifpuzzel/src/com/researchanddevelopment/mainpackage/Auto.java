@@ -1,6 +1,7 @@
 package com.researchanddevelopment.mainpackage;
 
 import android.graphics.PointF;
+import android.graphics.Paint.Align;
 
 public class Auto {
 	private PointF pos;
@@ -25,8 +26,6 @@ public class Auto {
 		this.pos = pos;
 		this.length = length;
 		this.orientation = orientation;
-		
-		
 	}
 	
 	/**
@@ -109,12 +108,14 @@ public class Auto {
 		if(orientation == Orientation.HORIZONTAAL && a.orientation == Orientation.VERTICAAL){
 			return ((pos.x < a.pos.x + 1 && pos.x > a.pos.x) ||
 					(pos.x + length  > a.pos.x && pos.x + length  < a.pos.x + 1))
-					&& pos.y >= a.pos.y && pos.y + 1 <= a.pos.y + a.length;
+					&& ((pos.y >= a.pos.y && pos.y + 1 < a.pos.y + a.length) || 
+							(pos.y > a.pos.y && pos.y + 1 <= a.pos.y + a.length));
 		}
 		if(orientation == Orientation.VERTICAAL && a.orientation == Orientation.HORIZONTAAL){
 			return ((pos.y < a.pos.y + 1 && pos.y > a.pos.y) ||
 					(pos.y + length > a.pos.y && pos.y + length < a.pos.y + 1))
-					&& pos.x >= a.pos.x && pos.x + 1 <= a.pos.x + length;
+					&& ((pos.x >= a.pos.x && pos.x + 1 < a.pos.x + a.length) || 
+							(pos.x > a.pos.x && pos.x + 1 <= a.pos.x + a.length));
 		}
 		if(orientation == Orientation.VERTICAAL && a.orientation == Orientation.VERTICAAL){
 			return ((pos.y < a.pos.y + a.length && pos.y > a.pos.y) ||
@@ -122,11 +123,17 @@ public class Auto {
 					&& pos.x == a.pos.x;
 		}
 		
+		return false;
+				
+	}
+	
+	public boolean outOfBounds(){
+		if(isGoalcar())
+			return pos.x < 0;
 		if(orientation == Orientation.HORIZONTAAL)
 			return pos.x < 0 || pos.x + length > Board.BOARD_SIZE;
 		else
-			return pos.y < 0 || pos.y + length > Board.BOARD_SIZE;
-				
+			return pos.y < 0 || pos.y + length > Board.BOARD_SIZE;	
 	}
 	
 	public boolean touchOnPosition(double x, double y, int TILE_SIZE){
