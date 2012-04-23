@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PointF;
 import android.view.MotionEvent;
@@ -119,7 +120,6 @@ public class AutoListener implements OnTouchListener {
 	}
 	
 	private void win(View v){
-		b.drawWin();
 		v.invalidate();
 		Database db = new Database(act.getApplicationContext());
 		
@@ -127,9 +127,26 @@ public class AutoListener implements OnTouchListener {
 		ContentValues values = new ContentValues();
 		values.put("gameid", this.level);
 		values.put("least_moves", this.moves);
-		dbase.update(Database.DATABASE_TABLE_NAME, values, "gameid = ? AND (least_moves > ? OR least_moves IS NULL)", new String[] {this.level + "", this.moves + ""});
+		int row = dbase.update(Database.DATABASE_TABLE_NAME, values, "gameid = ? AND (least_moves > ? OR least_moves IS NULL)", new String[] {this.level + "", this.moves + ""});
 		
+		b.drawWin((row > 0));
+		dbase.close();
 		
+
+		Thread timer = new Thread() {
+			public void run() {
+				try {
+					sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} finally {
+					Intent openStartingPoint = new Intent(
+							act.getApplicationContext(), SchuifpuzzelActivity.class);
+					act.startActivity(openStartingPoint);
+				}
+			}
+		};
+		timer.start();
 		
 	}
 
