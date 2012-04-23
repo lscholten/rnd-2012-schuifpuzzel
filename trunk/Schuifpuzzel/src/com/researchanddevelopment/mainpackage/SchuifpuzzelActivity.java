@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 public class SchuifpuzzelActivity extends Activity {
 
@@ -25,7 +26,7 @@ public class SchuifpuzzelActivity extends Activity {
 	 * 
 	 * @param v
 	 */
-	public void onClickStartButton() {
+	public void onClickStartButton(View v) {
 		Intent i = new Intent();
 		i.setClass(getApplicationContext(), LevelSelectActivity.class);
 		startActivity(i);
@@ -43,7 +44,6 @@ public class SchuifpuzzelActivity extends Activity {
 		// Handle item selection
 		switch (item.getItemId()) {
 			case R.id.new_game:
-				onClickStartButton();
 				return true;
 			case R.id.difficulty:
 				return true;

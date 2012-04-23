@@ -1,10 +1,11 @@
 package com.researchanddevelopment.mainpackage;
 
+import android.app.Activity;
 import android.graphics.PointF;
 
 /**
  * @author Thom
- *
+ * 
  */
 public class Auto {
 	private PointF pos;
@@ -13,8 +14,10 @@ public class Auto {
 	private boolean goalcar = false;
 	private int moves = 0;
 
-	public static enum Orientation {HORIZONTAAL, VERTICAAL};
-	
+	public static enum Orientation {
+		HORIZONTAAL, VERTICAAL
+	};
+
 	/**
 	 * Een nieuwe auto maken - nooit goalcar
 	 * 
@@ -23,15 +26,17 @@ public class Auto {
 	 * @param height
 	 * @param orientation
 	 */
-	public Auto(PointF pos, int length, Orientation orientation){
-		if(orientation == null || length < 2 || pos.x < 0 || pos.x > Board.BOARD_SIZE || pos.y < 0 || pos.y > Board.BOARD_SIZE) 
+	public Auto(PointF pos, int length, Orientation orientation) {
+		if (orientation == null || length < 2 || pos.x < 0
+				|| pos.x > Board.BOARD_SIZE || pos.y < 0
+				|| pos.y > Board.BOARD_SIZE)
 			throw new IllegalArgumentException("Fix your arguments");
-		
+
 		this.pos = pos;
 		this.length = length;
 		this.orientation = orientation;
 	}
-	
+
 	/**
 	 * Nieuwe auto maken
 	 * 
@@ -53,7 +58,8 @@ public class Auto {
 	}
 
 	/**
-	 * @param pos the pos to set
+	 * @param pos
+	 *            the pos to set
 	 */
 	public void setPos(PointF pos) {
 		this.pos = pos;
@@ -72,95 +78,97 @@ public class Auto {
 	public int getLength() {
 		return length;
 	}
-	
+
 	/**
 	 * @return is this the goal car
 	 */
 	public boolean isGoalcar() {
 		return goalcar;
 	}
-	
-	/**
-	 * Find out if a car is on a position
-	 * 
-	 * @param positie
-	 * @return is this car on position p?
-	 */
-	public boolean collide(PointF p) {
-		if(this.pos.x == p.x && this.pos.y == p.y)
-			return true;
-		else if(this.orientation.equals(Orientation.HORIZONTAAL) && (p.x - pos.x - length <= 0) && p.y == pos.y) 
-			return true;
-		else if(this.orientation.equals(Orientation.VERTICAAL) && (p.y - pos.y - length <= 0 ) && p.x == pos.x)
-			return true;
-					
-		return false;
-	}
-	
+
 	/**
 	 * Check for collision
 	 * 
 	 * @param a
 	 * @return
 	 */
-	public boolean collide(Auto a){
-		if(a.equals(this))
+	public boolean collide(Auto a, int signum) {
+		if (a.equals(this)) {
 			return false;
-		if(orientation == Orientation.HORIZONTAAL && a.orientation == Orientation.HORIZONTAAL){
-			return ((pos.x < a.pos.x + a.length && pos.x > a.pos.x) ||
-					(pos.x + length > a.pos.x && pos.x + length < a.pos.x + a.length))
-					&& pos.y == a.pos.y;
 		}
-		if(orientation == Orientation.HORIZONTAAL && a.orientation == Orientation.VERTICAAL){
-			return ((pos.x < a.pos.x + 1 && pos.x > a.pos.x) ||
-					(pos.x + length  > a.pos.x && pos.x + length  < a.pos.x + 1))
-					&& ((pos.y >= a.pos.y && pos.y + 1 < a.pos.y + a.length) || 
-							(pos.y > a.pos.y && pos.y + 1 <= a.pos.y + a.length));
+
+		if (orientation == Orientation.HORIZONTAAL) {
+			if (a.orientation == Orientation.HORIZONTAAL) {
+				return ((pos.x < a.pos.x + a.length && pos.x > a.pos.x) || (pos.x
+						+ length > a.pos.x && pos.x + length < a.pos.x
+						+ a.length))
+						&& pos.y == a.pos.y;
+
+			} else if (a.orientation == Orientation.VERTICAAL) {
+				if (signum >= 0) {
+					return (a.pos.x <= pos.x + length) && a.pos.x > pos.x
+							&& pos.y >= a.pos.y && pos.y < a.pos.y + a.length;
+
+				} else {
+					return (a.pos.x + 1 < pos.x + length) && a.pos.x + 1 >= pos.x
+							&& pos.y >= a.pos.y && pos.y < a.pos.y + a.length;
+				}
+
+			}
+
+		} else if (orientation == Orientation.VERTICAAL) {
+			if (a.orientation == Orientation.HORIZONTAAL) {
+				if (signum == 1) {
+					return (a.pos.y <= pos.y + length) && a.pos.y > pos.y
+							&& pos.x + 1 >= a.pos.x + 1 && pos.x + 1 < a.pos.x + 1 + a.length;
+				} else {
+					return (a.pos.y + 1 < pos.y + length) && a.pos.y + 1 >= pos.y
+							&& pos.x + 1 >= a.pos.x + 1 && pos.x + 1< a.pos.x + 1 + a.length;
+				}
+
+			} else if (a.orientation == Orientation.VERTICAAL) {
+				return ((pos.y < a.pos.y + a.length && pos.y > a.pos.y) || (pos.y
+						+ length > a.pos.y && pos.y + length < a.pos.y
+						+ a.length))
+						&& pos.x == a.pos.x;
+
+			}
 		}
-		if(orientation == Orientation.VERTICAAL && a.orientation == Orientation.HORIZONTAAL){
-			return ((pos.y < a.pos.y + 1 && pos.y > a.pos.y) ||
-					(pos.y + length > a.pos.y && pos.y + length < a.pos.y + 1))
-					&& ((pos.x >= a.pos.x && pos.x + 1 < a.pos.x + a.length) || 
-							(pos.x > a.pos.x && pos.x + 1 <= a.pos.x + a.length));
-		}
-		if(orientation == Orientation.VERTICAAL && a.orientation == Orientation.VERTICAAL){
-			return ((pos.y < a.pos.y + a.length && pos.y > a.pos.y) ||
-					(pos.y + length > a.pos.y && pos.y + length < a.pos.y + a.length))
-					&& pos.x == a.pos.x;
-		}
-		
+
 		return false;
-				
+
 	}
-	
+
 	/**
 	 * @return
 	 */
-	public boolean outOfBounds(){
-		if(goalcar)
+	public boolean outOfBounds() {
+		if (goalcar) {
 			return pos.x < 0;
-		if(orientation == Orientation.HORIZONTAAL)
+		}
+		if (orientation == Orientation.HORIZONTAAL) {
 			return pos.x < 0 || pos.x + length > Board.BOARD_SIZE;
-		else
-			return pos.y < 0 || pos.y + length > Board.BOARD_SIZE;	
+		} else {
+			return pos.y < 0 || pos.y + length > Board.BOARD_SIZE;
+		}
 	}
-	
+
 	/**
 	 * Find out if the car is in the goal position
 	 * 
 	 * @return is this the goal position?
 	 */
 	public boolean isWinPosition() {
-		return goalcar && pos.x  + length/2 >= Board.BOARD_SIZE;
+		return goalcar && pos.x + length / 2 >= Board.BOARD_SIZE;
 	}
-	
+
 	/**
 	 * @param x
 	 * @param y
 	 * @param TILE_SIZE
 	 * @return
 	 */
-	public boolean touchOnPosition(double x, double y, int TILE_SIZE){
+	public boolean touchOnPosition(double x, double y, int TILE_SIZE) {
 		float xLeft = this.pos.x;
 		float yTop = this.pos.y;
 		int length = this.length;
@@ -168,18 +176,20 @@ public class Auto {
 		boolean touched = false;
 		if (this.orientation == Orientation.HORIZONTAAL)
 			touched = 5 + TILE_SIZE * xLeft <= x && 5 + TILE_SIZE * yTop <= y
-					&& TILE_SIZE * (xLeft + length) >= x && TILE_SIZE * (yTop + 1) >= y;
-		if(this.orientation == Orientation.VERTICAAL)
+					&& TILE_SIZE * (xLeft + length) >= x
+					&& TILE_SIZE * (yTop + 1) >= y;
+		if (this.orientation == Orientation.VERTICAAL)
 			touched = 5 + TILE_SIZE * xLeft <= x && 5 + TILE_SIZE * yTop <= y
-				&& TILE_SIZE * (xLeft + 1) >= x && TILE_SIZE * (yTop + length) >= y;
-				
+					&& TILE_SIZE * (xLeft + 1) >= x
+					&& TILE_SIZE * (yTop + length) >= y;
+
 		return touched;
 	}
-	
+
 	public void addMove() {
-		moves ++;
+		moves++;
 	}
-	
+
 	public int getMoves() {
 		return moves;
 	}

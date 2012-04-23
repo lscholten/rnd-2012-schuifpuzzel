@@ -3,5 +3,5 @@
     <item android:id="@+id/new_game"
           android:title="New Game"/>
     <item android:id="@+id/difficulty"
-          android:title="Difficulty" />
+          android:title="Difficulty" /> 
 </menu>
