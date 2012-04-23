@@ -1,0 +1,16 @@
+<game>
+    <car orientation="WE" goalcar="goalcar" x="1" y="2" length="3" />
+    <car orientation="WE"  x="0" y="0" length="2" />
+    <car orientation="NS"  x="0" y="2" length="3" />
+    <car orientation="WE"  x="4" y="4" length="2" />
+    <car orientation="WE"  x="0" y="1" length="2" />
+    <car orientation="NS"  x="4" y="1" length="3" />
+    <car orientation="NS"  x="2" y="0" length="2" />
+    <car orientation="WE"  x="4" y="0" length="2" />
+    <car orientation="NS"  x="3" y="4" length="2" />
+    <car orientation="WE"  x="0" y="5" length="2" />
+    <car orientation="NS"  x="5" y="1" length="3" />
+    <car orientation="WE"  x="1" y="3" length="3" />
+    <car orientation="WE"  x="4" y="5" length="2" />
+
+</game>
