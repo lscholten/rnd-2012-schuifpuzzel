@@ -38,6 +38,9 @@ public class SchuifpuzzelActivity extends Activity {
 		startActivity(i);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -45,6 +48,11 @@ public class SchuifpuzzelActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Opties selecteren in het popup-menu (hardware menu knop)
+	 * 
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection

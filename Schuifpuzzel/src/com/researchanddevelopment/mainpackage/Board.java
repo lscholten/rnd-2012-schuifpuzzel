@@ -13,16 +13,34 @@ import android.graphics.PointF;
  * Model van het board
  * 
  * @author Paranoid Android
- *
+ * 
  */
 public class Board {
+	/**
+	 * Size of the board
+	 */
 	public static final int BOARD_SIZE = 6;
 
+	/**
+	 * Lijst met autos
+	 */
 	private ArrayList<Auto> autos;
+
+	/**
+	 * View van board
+	 */
 	private BoardView boardView;
+
+	/**
+	 * activity welke erbij hoort
+	 */
 	private Activity act;
+
+	/**
+	 * welk level er gespeelt wordt tbv highscore
+	 */
 	private int level;
-	
+
 	/**
 	 * Creates a board from a list of cars
 	 * 
@@ -32,11 +50,12 @@ public class Board {
 		this.autos = autos;
 
 	}
-	
+
 	/**
 	 * Creates a new Board from an xml file
 	 * 
-	 * @param xml XMLResourceParser to use
+	 * @param xml
+	 *            XMLResourceParser to use
 	 */
 	public Board(XmlResourceParser xml, Activity act, int level) {
 		this.act = act;
@@ -65,7 +84,7 @@ public class Board {
 							else if (attr.equals("orientation")) {
 								if (xml.getAttributeValue(i).equals("NS"))
 									orientatie = Auto.Orientation.VERTICAAL;
-								else if(xml.getAttributeValue(i).equals("WE"))
+								else if (xml.getAttributeValue(i).equals("WE"))
 									orientatie = Auto.Orientation.HORIZONTAAL;
 
 							} else if (attr.equals("goalcar"))
@@ -75,8 +94,8 @@ public class Board {
 
 						}
 
-						autos.add(new Auto(new PointF(x, y), length, orientatie,
-								goalcar));
+						autos.add(new Auto(new PointF(x, y), length,
+								orientatie, goalcar));
 					}
 				}
 
@@ -117,13 +136,14 @@ public class Board {
 	}
 
 	/**
-	 * @param boardView the boardView to set
+	 * @param boardView
+	 *            the boardView to set
 	 */
 	public void setBoardView(BoardView boardView) {
 		this.boardView = boardView;
 		boardView.addAutos(autos);
-		boardView.setOnTouchListener(new AutoListener(this.autos, act, level, this.boardView));
+		boardView.setOnTouchListener(new AutoListener(this.autos, act, level,
+				this.boardView));
 	}
-	
-	
+
 }
