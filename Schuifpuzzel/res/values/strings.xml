@@ -3,5 +3,6 @@
 
     <string name="app_name">Rush Hour</string>
     <string name="StartGameString">Start</string>
+    <string name="application_description">Rush Hour game</string>
 
 </resources>

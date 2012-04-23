@@ -27,7 +27,7 @@ public class SchuifpuzzelActivity extends Activity {
 	 */
 	public void onClickStartButton() {
 		Intent i = new Intent();
-		i.setClass(getApplicationContext(), GameActivity.class);
+		i.setClass(getApplicationContext(), LevelSelectActivity.class);
 		startActivity(i);
 	}
 

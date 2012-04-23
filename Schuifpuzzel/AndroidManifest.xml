@@ -10,7 +10,7 @@
     <application
         android:enabled="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="@string/app_name" android:testOnly="false" android:allowClearUserData="true" android:description="@string/application_description" android:allowBackup="false" android:persistent="false" android:killAfterRestore="false">
         <activity
             android:label="@string/app_name"
             android:name=".Splash"
@@ -43,6 +43,12 @@
              	
              	<catgory android:name="android.intent.category.DEFAULT" />
                 
+            </intent-filter>
+        </activity>
+        <activity android:name="LevelSelectActivity">
+            <intent-filter>
+                <action android:name="com.researchanddevelopment.mainpackage.LEVELSELECTACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>
