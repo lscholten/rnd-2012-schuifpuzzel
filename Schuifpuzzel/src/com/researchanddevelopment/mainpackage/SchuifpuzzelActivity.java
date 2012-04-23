@@ -12,7 +12,7 @@ import android.view.View;
  * Het hoofdmenu
  * 
  * @author Paranoid Android
- *
+ * 
  */
 public class SchuifpuzzelActivity extends Activity {
 
@@ -49,12 +49,13 @@ public class SchuifpuzzelActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
-			case R.id.new_game:
-				return true;
-			case R.id.difficulty:
-				return true;
-			default:
-				return false;
+		case R.id.new_game:
+			return true;
+		case R.id.difficulty:
+			return true;
+		default:
+			return false;
 		}
 	}
+
 }
