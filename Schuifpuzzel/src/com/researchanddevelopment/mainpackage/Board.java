@@ -12,7 +12,7 @@ public class Board {
 
 	private ArrayList<Auto> autos;
 	private BoardView boardView;
-
+	
 	/**
 	 * Creates a board from a list of cars
 	 * 

@@ -37,6 +37,8 @@ public class BoardView extends View {
 				canvas.drawRect(5+TILE_SIZE*i, 5+TILE_SIZE*j, TILE_SIZE*(i+1) , TILE_SIZE*(j+1), p);
 			}
 		}
+		p.setColor(Color.DKGRAY);
+		canvas.drawRect(5+TILE_SIZE*(Board.BOARD_SIZE-1),5+2*TILE_SIZE,TILE_SIZE*Board.BOARD_SIZE+5, 3*TILE_SIZE, p);
 		
 
 		for(View av : autoViews) {
