@@ -91,7 +91,7 @@ public class Auto {
 	 * Check for collision
 	 * 
 	 * @param a
-	 * @return
+	 * @return botsing?
 	 */
 	public boolean collide(Auto a, int signum) {
 		if (a.equals(this)) {
@@ -141,9 +141,9 @@ public class Auto {
 	}
 
 	/**
-	 * @return
+	 * @return out of bounds?
 	 */
-	public boolean outOfBounds() {
+	public boolean isOutOfBounds() {
 		if (goalcar) {
 			return pos.x < 0;
 		}

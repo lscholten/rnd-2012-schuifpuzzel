@@ -20,24 +20,62 @@ import com.researchanddevelopment.mainpackage.Auto.Orientation;
  * @author Paranoid Android
  *
  */
+/**
+ * @author Paranoid Android
+ *
+ */
 public class AutoListener implements OnTouchListener {
 
+	/**
+	 * Startpunt beweging
+	 */
 	private PointF start;
-	private Auto ac;
+	/**
+	 * Actieve car
+	 */
+	private Auto activeCar;
+	/**
+	 * aantal zetten
+	 */
 	private int moves;
+	/**
+	 * lijst met autos
+	 */
 	ArrayList<Auto> auto;
+	/**
+	 * levelnr
+	 */
 	private final int level;
+	/**
+	 * Activity
+	 */
 	private Activity act;
-	private BoardView b;
+	/**
+	 * View van speelboard
+	 */
+	private BoardView boardView;
+	/**
+	 * Gewonnen?
+	 */
 	private boolean won = false;
 
-	public AutoListener(ArrayList<Auto> a, Activity act, int level, BoardView b) {
-		this.auto = a;
+	/**
+	 * Nieuwe AutoListener maken 
+	 * @param autoList Lijst met autos
+	 * @param act      activity welke erbij hoort
+	 * @param level levelnummer
+	 * @param boardView view van het board
+	 */
+	public AutoListener(ArrayList<Auto> autoList, Activity act, int level, BoardView boardView) {
+		this.auto = autoList;
 		this.act = act;
 		this.level = level;
-		this.b = b;
+		this.boardView = boardView;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+	 */
 	public boolean onTouch(View v, MotionEvent e) {
 		if (won){ 
 			return false;
@@ -54,57 +92,57 @@ public class AutoListener implements OnTouchListener {
 					}
 				}
 
-				ac = activecar;
+				activeCar = activecar;
 				start = new PointF(e.getX(), e.getY());
 				break;
 
 			case MotionEvent.ACTION_UP:
-				if(ac != null){
+				if(activeCar != null){
 					this.moves++;
-					b.updateMoves(moves);
-					ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
-					ac = null;
+					boardView.updateMoves(moves);
+					activeCar.setPos(new PointF(Math.round(activeCar.getPos().x), Math.round(activeCar.getPos().y)));
+					activeCar = null;
 				}
 				
 				break;
 
 			case MotionEvent.ACTION_MOVE:
-				if (ac != null) {
+				if (activeCar != null) {
 					
 					boolean isCollision = false;
-					PointF oldPosition = ac.getPos();
+					PointF oldPosition = activeCar.getPos();
 					PointF newPosition;
 					float movement;
 					
-					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
+					if (activeCar.getOrientation() == Orientation.HORIZONTAAL) {
 						movement = e.getX() - start.x; 
 						movement = (movement > BoardView.TILE_SIZE) ? BoardView.TILE_SIZE : movement;
-						newPosition = new PointF(ac.getPos().x + (movement) / BoardView.TILE_SIZE, ac
+						newPosition = new PointF(activeCar.getPos().x + (movement) / BoardView.TILE_SIZE, activeCar
 								.getPos().y);
 						
 					} else {
 						movement = e.getY() - start.y; 
 						movement = (movement > BoardView.TILE_SIZE) ? BoardView.TILE_SIZE : movement;
-						newPosition = (new PointF(ac.getPos().x, ac.getPos().y
+						newPosition = (new PointF(activeCar.getPos().x, activeCar.getPos().y
 								+ ((movement) / BoardView.TILE_SIZE)));
 					}
 					
-					ac.setPos(newPosition);
+					activeCar.setPos(newPosition);
 					
 					
 					for(Auto auto: this.auto){
-						if(ac.collide(auto, (int)Math.signum(movement))){
+						if(activeCar.collide(auto, (int)Math.signum(movement))){
 							isCollision = true;
-							ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
+							activeCar.setPos(new PointF(Math.round(activeCar.getPos().x), Math.round(activeCar.getPos().y)));
 							break;
 						}
 					}
-					if(isCollision || ac.outOfBounds()){
-						ac.setPos(oldPosition);
-					} else if (ac.isWinPosition()) {
-						ac.setPos(new PointF(Board.BOARD_SIZE-1, 2F));
+					if(isCollision || activeCar.isOutOfBounds()){
+						activeCar.setPos(oldPosition);
+					} else if (activeCar.isWinPosition()) {
+						activeCar.setPos(new PointF(Board.BOARD_SIZE-1, 2F));
 						this.moves++;
-						b.updateMoves(moves);
+						boardView.updateMoves(moves);
 						this.won = true;
 						win(v);
 				
@@ -119,6 +157,11 @@ public class AutoListener implements OnTouchListener {
 		return true;
 	}
 	
+	/**
+	 * Gewonnen? functies
+	 * 
+	 * @param v view om te manipuleren
+	 */
 	private void win(View v){
 		v.invalidate();
 		Database db = new Database(act.getApplicationContext());
@@ -129,7 +172,7 @@ public class AutoListener implements OnTouchListener {
 		values.put("least_moves", this.moves);
 		int row = dbase.update(Database.DATABASE_TABLE_NAME, values, "gameid = ? AND (least_moves > ? OR least_moves IS NULL)", new String[] {this.level + "", this.moves + ""});
 		
-		b.drawWin((row > 0));
+		boardView.drawWin((row > 0));
 		dbase.close();
 
 		Thread timer = new Thread() {

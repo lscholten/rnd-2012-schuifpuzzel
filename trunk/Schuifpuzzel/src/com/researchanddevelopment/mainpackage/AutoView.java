@@ -15,20 +15,37 @@ import com.researchanddevelopment.mainpackage.Auto.Orientation;
  *
  */
 public class AutoView extends View {
+	/**
+	 * Auto
+	 */
 	private Auto auto;
+	/**
+	 * Paint
+	 */
 	Paint p;
-	private static int TILE_SIZE;
+	/**
+	 * Tegelgrootte
+	 */
+	private int TILE_SIZE;
 
+	/**
+	 * @param context
+	 * @param a
+	 * @param tile_size
+	 */
 	public AutoView(Context context, Auto a, int tile_size) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		this.auto = a;
 		this.p = new Paint();
 
-		AutoView.TILE_SIZE = tile_size;
+		TILE_SIZE = tile_size;
 
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View#onDraw(android.graphics.Canvas)
+	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
 		p.setColor(auto.isGoalcar() ? Color.RED : Color.YELLOW);

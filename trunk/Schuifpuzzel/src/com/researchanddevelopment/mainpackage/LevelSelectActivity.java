@@ -19,6 +19,9 @@ import android.preference.PreferenceScreen;
  */
 public class LevelSelectActivity extends PreferenceActivity {
 
+	/* (non-Javadoc)
+	 * @see android.preference.PreferenceActivity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -56,6 +59,9 @@ public class LevelSelectActivity extends PreferenceActivity {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
 	@Override
 	protected void onPause() {
 		super.onPause();
