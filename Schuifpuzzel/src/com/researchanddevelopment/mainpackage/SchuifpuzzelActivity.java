@@ -11,7 +11,8 @@ import android.view.View;
 /**
  * Het hoofdmenu
  * 
- * @author Paranoid Android
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
  * 
  */
 public class SchuifpuzzelActivity extends Activity {
@@ -38,7 +39,9 @@ public class SchuifpuzzelActivity extends Activity {
 		startActivity(i);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	@Override
@@ -57,12 +60,12 @@ public class SchuifpuzzelActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
-		case R.id.new_game:
-			return true;
-		case R.id.difficulty:
-			return true;
-		default:
-			return false;
+			case R.id.new_game:
+				return true;
+			case R.id.difficulty:
+				return true;
+			default:
+				return false;
 		}
 	}
 

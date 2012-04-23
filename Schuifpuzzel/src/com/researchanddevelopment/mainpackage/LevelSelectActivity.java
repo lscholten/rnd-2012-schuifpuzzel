@@ -14,27 +14,31 @@ import android.preference.PreferenceScreen;
 /**
  * Level select scherm
  * 
- * @author Paranoid Android
- *
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
+ * 
  */
 public class LevelSelectActivity extends PreferenceActivity {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.preference.PreferenceActivity#onCreate(android.os.Bundle)
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
-		PreferenceScreen root = this.getPreferenceManager().createPreferenceScreen(getApplicationContext());
+
+		PreferenceScreen root = this.getPreferenceManager().createPreferenceScreen(
+				getApplicationContext());
 		Database db_ad = new Database(getApplicationContext());
-		Cursor dbcursor = db_ad.getReadableDatabase().query(Database.DATABASE_TABLE_NAME, new String[]{"least_moves"}, null, null, null, null,null);
+		Cursor dbcursor = db_ad.getReadableDatabase().query(Database.DATABASE_TABLE_NAME,
+				new String[] { "least_moves" }, null, null, null, null, null);
 		dbcursor.moveToFirst();
-		
-		for(int i = 1; i <= 40 ; i++) {
+
+		for (int i = 1; i <= 40; i++) {
 			final int id = i;
 			final boolean hasMoves = !dbcursor.isNull(0);
-			
+
 			Preference pref = new Preference(getApplicationContext());
 			pref.setTitle("Level " + i);
 			pref.setSummary(hasMoves ? "Least amount of moves used: " + dbcursor.getInt(0) : "");
@@ -48,18 +52,19 @@ public class LevelSelectActivity extends PreferenceActivity {
 				}
 			});
 			root.addPreference(pref);
-			
+
 			dbcursor.moveToNext();
 		}
 		dbcursor.close();
 		db_ad.close();
-		
+
 		this.setPreferenceScreen(root);
-	
-		
+
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onPause()
 	 */
 	@Override
@@ -67,5 +72,5 @@ public class LevelSelectActivity extends PreferenceActivity {
 		super.onPause();
 		finish();
 	}
-	
+
 }

@@ -13,7 +13,8 @@ import android.view.View;
 /**
  * View van het bord
  * 
- * @author Paranoid Android
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
  * 
  */
 public class BoardView extends View {
@@ -22,28 +23,28 @@ public class BoardView extends View {
 	 * Views van de autos
 	 */
 	ArrayList<View> autoViews;
-	
+
 	/**
 	 * gewonnen?
 	 */
 	private boolean win = false;
-	
+
 	/**
 	 * Is een highscore?
 	 */
 	private boolean highScore = false;
-	
+
 	/**
 	 * Zetten
 	 */
 	private int moves;
-	
+
 	/**
 	 * Board paint
 	 */
 	private Paint boardp;
-	
-	/** 
+
+	/**
 	 * Grid paint
 	 */
 	private Paint gridp;
@@ -62,6 +63,7 @@ public class BoardView extends View {
 
 	/**
 	 * Nieuwe view maken
+	 * 
 	 * @param context
 	 */
 	public BoardView(Context context) {
@@ -74,37 +76,35 @@ public class BoardView extends View {
 		autoViews = new ArrayList<View>();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onDraw(android.graphics.Canvas)
 	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// Grid tekenen
-		canvas.drawRect(0, 0, TILE_SIZE * Board.BOARD_SIZE + 5, TILE_SIZE
-				* Board.BOARD_SIZE + 5, gridp);
+		canvas.drawRect(0, 0, TILE_SIZE * Board.BOARD_SIZE + 5, TILE_SIZE * Board.BOARD_SIZE + 5,
+				gridp);
 		for (int i = 0; i < Board.BOARD_SIZE; ++i) {
-	
+
 			for (int j = 0; j < Board.BOARD_SIZE; ++j) {
-				canvas.drawRect(5 + TILE_SIZE * i, 5 + TILE_SIZE * j, TILE_SIZE
-						* (i + 1), TILE_SIZE * (j + 1), boardp);
+				canvas.drawRect(5 + TILE_SIZE * i, 5 + TILE_SIZE * j, TILE_SIZE * (i + 1),
+						TILE_SIZE * (j + 1), boardp);
 			}
 		}
-		canvas.drawRect(5 + TILE_SIZE * (Board.BOARD_SIZE - 1),
-				5 + 2 * TILE_SIZE, TILE_SIZE * Board.BOARD_SIZE + 5,
-				3 * TILE_SIZE, finishp);
+		canvas.drawRect(5 + TILE_SIZE * (Board.BOARD_SIZE - 1), 5 + 2 * TILE_SIZE, TILE_SIZE
+				* Board.BOARD_SIZE + 5, 3 * TILE_SIZE, finishp);
 
 		for (View av : autoViews) {
 			((AutoView) av).onDraw(canvas);
 		}
 
 		if (win) {
-			canvas.drawText("You win in " + moves + " moves", 40,
-					7 * TILE_SIZE, textp);
+			canvas.drawText("You win in " + moves + " moves", 40, 7 * TILE_SIZE, textp);
 			if (highScore) {
-				canvas.drawText("You broke your previous highscore", 40,
-						8 * TILE_SIZE, textp);
-				Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
-						R.drawable.not_bad);
+				canvas.drawText("You broke your previous highscore", 40, 8 * TILE_SIZE, textp);
+				Bitmap bmp = BitmapFactory.decodeResource(this.getResources(), R.drawable.not_bad);
 				canvas.drawBitmap(bmp, 150, 8 * TILE_SIZE + 5, textp);
 			}
 		} else {
@@ -117,6 +117,7 @@ public class BoardView extends View {
 
 	/**
 	 * Autos toevoegen aan view
+	 * 
 	 * @param autos
 	 */
 	public void addAutos(ArrayList<Auto> autos) {
@@ -130,6 +131,7 @@ public class BoardView extends View {
 
 	/**
 	 * i moves erbij
+	 * 
 	 * @param i
 	 */
 	public void updateMoves(int i) {
@@ -138,6 +140,7 @@ public class BoardView extends View {
 
 	/**
 	 * Win
+	 * 
 	 * @param b
 	 */
 	public void drawWin(boolean b) {

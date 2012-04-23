@@ -11,8 +11,9 @@ import com.researchanddevelopment.mainpackage.Auto.Orientation;
 /**
  * View voor alle autos
  * 
- * @author Paranoid Android
- *
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
+ * 
  */
 public class AutoView extends View {
 	/**
@@ -43,7 +44,9 @@ public class AutoView extends View {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onDraw(android.graphics.Canvas)
 	 */
 	@Override

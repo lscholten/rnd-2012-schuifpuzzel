@@ -7,11 +7,14 @@ import android.os.Bundle;
 /**
  * Splash screen
  * 
- * @author Paranoid Android
- *
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
+ * 
  */
 public class Splash extends Activity {
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
@@ -27,8 +30,8 @@ public class Splash extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
-					Intent openStartingPoint = new Intent(
-							getApplicationContext(), SchuifpuzzelActivity.class);
+					Intent openStartingPoint = new Intent(getApplicationContext(),
+							SchuifpuzzelActivity.class);
 					startActivity(openStartingPoint);
 				}
 			}
@@ -36,7 +39,9 @@ public class Splash extends Activity {
 		timer.start();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onPause()
 	 */
 	@Override

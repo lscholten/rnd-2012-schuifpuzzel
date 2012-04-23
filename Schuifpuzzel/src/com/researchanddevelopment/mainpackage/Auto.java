@@ -5,8 +5,9 @@ import android.graphics.PointF;
 /**
  * Model van autos
  * 
- * @author Paranoid Android
- *
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
+ * 
  */
 public class Auto {
 	private PointF pos;
@@ -28,8 +29,7 @@ public class Auto {
 	 * @param orientation
 	 */
 	public Auto(PointF pos, int length, Orientation orientation) {
-		if (orientation == null || length < 2 || pos.x < 0
-				|| pos.x > Board.BOARD_SIZE || pos.y < 0
+		if (orientation == null || length < 2 || pos.x < 0 || pos.x > Board.BOARD_SIZE || pos.y < 0
 				|| pos.y > Board.BOARD_SIZE)
 			throw new IllegalArgumentException("Fix your arguments");
 
@@ -100,15 +100,14 @@ public class Auto {
 
 		if (orientation == Orientation.HORIZONTAAL) {
 			if (a.orientation == Orientation.HORIZONTAAL) {
-				return ((pos.x < a.pos.x + a.length && pos.x > a.pos.x) || (pos.x
-						+ length > a.pos.x && pos.x + length < a.pos.x
-						+ a.length))
+				return ((pos.x < a.pos.x + a.length && pos.x > a.pos.x) || (pos.x + length > a.pos.x && pos.x
+						+ length < a.pos.x + a.length))
 						&& pos.y == a.pos.y;
 
 			} else if (a.orientation == Orientation.VERTICAAL) {
 				if (signum >= 0) {
-					return (a.pos.x <= pos.x + length) && a.pos.x > pos.x
-							&& pos.y >= a.pos.y && pos.y < a.pos.y + a.length;
+					return (a.pos.x <= pos.x + length) && a.pos.x > pos.x && pos.y >= a.pos.y
+							&& pos.y < a.pos.y + a.length;
 
 				} else {
 					return (a.pos.x + 1 < pos.x + length) && a.pos.x + 1 >= pos.x
@@ -124,13 +123,12 @@ public class Auto {
 							&& pos.x + 1 >= a.pos.x + 1 && pos.x + 1 < a.pos.x + 1 + a.length;
 				} else {
 					return (a.pos.y + 1 < pos.y + length) && a.pos.y + 1 >= pos.y
-							&& pos.x + 1 >= a.pos.x + 1 && pos.x + 1< a.pos.x + 1 + a.length;
+							&& pos.x + 1 >= a.pos.x + 1 && pos.x + 1 < a.pos.x + 1 + a.length;
 				}
 
 			} else if (a.orientation == Orientation.VERTICAAL) {
-				return ((pos.y < a.pos.y + a.length && pos.y > a.pos.y) || (pos.y
-						+ length > a.pos.y && pos.y + length < a.pos.y
-						+ a.length))
+				return ((pos.y < a.pos.y + a.length && pos.y > a.pos.y) || (pos.y + length > a.pos.y && pos.y
+						+ length < a.pos.y + a.length))
 						&& pos.x == a.pos.x;
 
 			}
@@ -177,12 +175,10 @@ public class Auto {
 		boolean touched = false;
 		if (this.orientation == Orientation.HORIZONTAAL)
 			touched = 5 + TILE_SIZE * xLeft <= x && 5 + TILE_SIZE * yTop <= y
-					&& TILE_SIZE * (xLeft + length) >= x
-					&& TILE_SIZE * (yTop + 1) >= y;
+					&& TILE_SIZE * (xLeft + length) >= x && TILE_SIZE * (yTop + 1) >= y;
 		if (this.orientation == Orientation.VERTICAAL)
 			touched = 5 + TILE_SIZE * xLeft <= x && 5 + TILE_SIZE * yTop <= y
-					&& TILE_SIZE * (xLeft + 1) >= x
-					&& TILE_SIZE * (yTop + length) >= y;
+					&& TILE_SIZE * (xLeft + 1) >= x && TILE_SIZE * (yTop + length) >= y;
 
 		return touched;
 	}
