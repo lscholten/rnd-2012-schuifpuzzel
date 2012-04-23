@@ -14,11 +14,25 @@ import android.view.MenuItem;
  *
  */
 public class GameActivity extends Activity {
+	/**
+	 * view
+	 */
 	BoardView view;
-	private String resourcename;
+	
+	/**
+	 * game id 
+	 */
 	private int gameid;
 
+	/**
+	 * Spelboard
+	 */
 	Board bord;
+
+	/**
+	 * Resource van de game xml
+	 */
+	private int gameResource;
 
 	/**
 	 * Called when the activity is first created.
@@ -27,18 +41,18 @@ public class GameActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		resourcename = "game01";
+		String resourcename = "game01";
 		gameid = 1;
 		if (this.getIntent().hasExtra("gameid")){
-			resourcename = String.format("game%02d", this.getIntent()
-					.getExtras().getInt("gameid"));
 			gameid = this.getIntent().getExtras().getInt("gameid");
+			resourcename = String.format("game%02d", gameid);
+			
 		}
 	
 
-		int res = getResources().getIdentifier(resourcename, "xml",
+		gameResource = getResources().getIdentifier(resourcename, "xml",
 				this.getPackageName());
-		bord = new Board(getResources().getXml(res), this, gameid);
+		bord = new Board(getResources().getXml(gameResource), this, gameid);
 		view = new BoardView(this);
 		view.setBackgroundColor(Color.BLACK);
 
@@ -47,6 +61,9 @@ public class GameActivity extends Activity {
 		setContentView(view);
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -54,14 +71,15 @@ public class GameActivity extends Activity {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
 			case R.id.Reset:
-				int res = getResources().getIdentifier(resourcename, "xml",
-						this.getPackageName());
-				bord = new Board(getResources().getXml(res), this, gameid);
+				bord = new Board(getResources().getXml(gameResource), this, gameid);
 				view = new BoardView(this);
 				view.setBackgroundColor(Color.BLACK);
 
@@ -74,9 +92,11 @@ public class GameActivity extends Activity {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		finish();
 	}
