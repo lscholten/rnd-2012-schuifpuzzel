@@ -58,11 +58,11 @@ public class AutoListener implements OnTouchListener {
 					PointF newPosition;
 					
 					if (ac.getOrientation() == Orientation.HORIZONTAAL) {
-						newPosition = new PointF(ac.getPos().x + ((e.getX() - start.x) / 60), ac
+						newPosition = new PointF(ac.getPos().x + ((e.getX() - start.x) / BoardView.TILE_SIZE), ac
 								.getPos().y);
 					} else {
 						newPosition = (new PointF(ac.getPos().x, ac.getPos().y
-								+ ((e.getY() - start.y) / 60)));
+								+ ((e.getY() - start.y) / BoardView.TILE_SIZE)));
 					}
 					
 					ac.setPos(newPosition);
