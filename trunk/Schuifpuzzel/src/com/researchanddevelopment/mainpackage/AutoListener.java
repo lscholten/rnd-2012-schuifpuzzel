@@ -24,6 +24,7 @@ public class AutoListener implements OnTouchListener {
 	private final int level;
 	private Activity act;
 	private BoardView b;
+	private boolean won = false;
 
 	public AutoListener(ArrayList<Auto> a, Activity act, int level, BoardView b) {
 		this.auto = a;
@@ -33,6 +34,9 @@ public class AutoListener implements OnTouchListener {
 	}
 
 	public boolean onTouch(View v, MotionEvent e) {
+		if (won){ 
+			return false;
+		}
 		switch (e.getAction()) {
 
 			case MotionEvent.ACTION_DOWN:
@@ -96,6 +100,7 @@ public class AutoListener implements OnTouchListener {
 						ac.setPos(new PointF(Board.BOARD_SIZE-1, 2F));
 						this.moves++;
 						b.updateMoves(moves);
+						this.won = true;
 						win(v);
 				
 						
