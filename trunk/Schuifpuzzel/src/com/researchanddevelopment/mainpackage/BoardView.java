@@ -3,6 +3,8 @@ package com.researchanddevelopment.mainpackage;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,6 +21,7 @@ public class BoardView extends View {
 
 	ArrayList<View> autoViews;
 	private boolean win = false;
+	private boolean highScore = false;
 	private int moves;
 	private Paint boardp;
 	private Paint gridp;
@@ -58,9 +61,13 @@ public class BoardView extends View {
 		}
 
 		if (win) {
-			Log.d("nigga", "g");
-			canvas.drawText("You win in " + moves + " moves :C", 40,
+			canvas.drawText("You win in " + moves + " moves", 40,
 					7 * TILE_SIZE, textp);
+			if(highScore){
+				canvas.drawText("You broke your previous highscore", 40, 8*TILE_SIZE, textp);
+				Bitmap bmp = BitmapFactory.decodeResource(this.getResources(), R.drawable.not_bad);
+				canvas.drawBitmap(bmp, 150, 8*TILE_SIZE + 5, textp);
+			}
 		} else {
 
 			canvas.drawText("Moves: " + moves, 40, 7 * TILE_SIZE, textp);
@@ -82,7 +89,8 @@ public class BoardView extends View {
 		this.moves = i;
 	}
 
-	public void drawWin() {
+	public void drawWin(boolean b) {
+		highScore = b;
 		win = true;
 	}
 

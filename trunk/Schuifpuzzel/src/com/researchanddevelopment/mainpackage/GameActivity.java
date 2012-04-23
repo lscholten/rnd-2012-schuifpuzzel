@@ -32,7 +32,7 @@ public class GameActivity extends Activity {
 		if (this.getIntent().hasExtra("gameid")){
 			resourcename = String.format("game%02d", this.getIntent()
 					.getExtras().getInt("gameid"));
-			this.getIntent().getExtras().getInt("gameid");
+			gameid = this.getIntent().getExtras().getInt("gameid");
 		}
 	
 
@@ -72,6 +72,13 @@ public class GameActivity extends Activity {
 			default:
 				return false;
 		}
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		finish();
 	}
 	
 
