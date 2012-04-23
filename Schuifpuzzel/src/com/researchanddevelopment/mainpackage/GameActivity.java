@@ -13,18 +13,14 @@ public class GameActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		bord = new Board(getResources().getXml(R.xml.game));
+		int res = getResources().getIdentifier("game01", "xml", this.getPackageName());
+		bord = new Board(getResources().getXml(res));
 		view = new BoardView(this);
 		view.setBackgroundColor(Color.BLACK);
 		
 		bord.setBoardView(view);
 		
-		
-		
 		setContentView(view);
-		
-		
-		
 	}
 	
 	
