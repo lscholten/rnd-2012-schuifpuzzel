@@ -4,6 +4,7 @@
 package com.researchanddevelopment.mainpackage;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -21,13 +22,18 @@ public class LevelSelectActivity extends PreferenceActivity {
 		
 		
 		PreferenceScreen root = this.getPreferenceManager().createPreferenceScreen(getApplicationContext());
+		Database db_ad = new Database(getApplicationContext());
+		Cursor dbcursor = db_ad.getReadableDatabase().query(Database.DATABASE_TABLE_NAME, new String[]{"least_moves"}, null, null, null, null,null);
+		dbcursor.moveToFirst();
 		
-		for(int i = 1; i <= 40; i++) {
+		for(int i = 1; i <= 40 ; i++) {
 			final int id = i;
-			Preference d = new Preference(getApplicationContext());
-			d.setTitle("Level " + i);
-			d.setSummary("lol");
-			d.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			final boolean hasMoves = !dbcursor.isNull(0);
+			
+			Preference pref = new Preference(getApplicationContext());
+			pref.setTitle("Level " + i);
+			pref.setSummary(hasMoves ? "Least amount of moves used: " + dbcursor.getInt(0) : "");
+			pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 				public boolean onPreferenceClick(Preference arg0) {
 					Intent intent = new Intent();
 					intent.setClass(getApplicationContext(), GameActivity.class);
@@ -36,8 +42,12 @@ public class LevelSelectActivity extends PreferenceActivity {
 					return true;
 				}
 			});
-			root.addPreference(d);
+			root.addPreference(pref);
+			
+			dbcursor.moveToNext();
 		}
+		dbcursor.close();
+		db_ad.close();
 		
 		this.setPreferenceScreen(root);
 	
