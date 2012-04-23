@@ -12,7 +12,8 @@ import android.graphics.PointF;
 /**
  * Model van het board
  * 
- * @author Paranoid Android
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
  * 
  */
 public class Board {
@@ -94,8 +95,7 @@ public class Board {
 
 						}
 
-						autos.add(new Auto(new PointF(x, y), length,
-								orientatie, goalcar));
+						autos.add(new Auto(new PointF(x, y), length, orientatie, goalcar));
 					}
 				}
 
@@ -142,8 +142,7 @@ public class Board {
 	public void setBoardView(BoardView boardView) {
 		this.boardView = boardView;
 		boardView.addAutos(autos);
-		boardView.setOnTouchListener(new AutoListener(this.autos, act, level,
-				this.boardView));
+		boardView.setOnTouchListener(new AutoListener(this.autos, act, level, this.boardView));
 	}
 
 }

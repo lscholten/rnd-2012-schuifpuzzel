@@ -10,17 +10,18 @@ import android.view.MenuItem;
 /**
  * Game Activity, beheert spel
  * 
- * @author Paranoid Android
- *
+ * @author Paranoid Android Thom Wiggers - 4119444 Luuk Scholten - 4126424 Koen
+ *         Basten - 4119657
+ * 
  */
 public class GameActivity extends Activity {
 	/**
 	 * view
 	 */
 	BoardView view;
-	
+
 	/**
-	 * game id 
+	 * game id
 	 */
 	private int gameid;
 
@@ -43,15 +44,13 @@ public class GameActivity extends Activity {
 
 		String resourcename = "game01";
 		gameid = 1;
-		if (this.getIntent().hasExtra("gameid")){
+		if (this.getIntent().hasExtra("gameid")) {
 			gameid = this.getIntent().getExtras().getInt("gameid");
 			resourcename = String.format("game%02d", gameid);
-			
-		}
-	
 
-		gameResource = getResources().getIdentifier(resourcename, "xml",
-				this.getPackageName());
+		}
+
+		gameResource = getResources().getIdentifier(resourcename, "xml", this.getPackageName());
 		bord = new Board(getResources().getXml(gameResource), this, gameid);
 		view = new BoardView(this);
 		view.setBackgroundColor(Color.BLACK);
@@ -60,8 +59,10 @@ public class GameActivity extends Activity {
 
 		setContentView(view);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	@Override
@@ -71,7 +72,9 @@ public class GameActivity extends Activity {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 	@Override
@@ -91,8 +94,10 @@ public class GameActivity extends Activity {
 				return false;
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onPause()
 	 */
 	@Override
@@ -100,6 +105,5 @@ public class GameActivity extends Activity {
 		super.onPause();
 		finish();
 	}
-	
 
 }
