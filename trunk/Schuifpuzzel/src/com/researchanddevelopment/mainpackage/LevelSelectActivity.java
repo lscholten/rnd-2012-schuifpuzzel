@@ -12,7 +12,9 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 
 /**
- * @author Thom
+ * Level select scherm
+ * 
+ * @author Paranoid Android
  *
  */
 public class LevelSelectActivity extends PreferenceActivity {

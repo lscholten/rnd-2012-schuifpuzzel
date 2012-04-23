@@ -5,6 +5,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Database access
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class Database extends SQLiteOpenHelper {
 
 	public static final String DATABASE_TABLE_NAME = "highscores";

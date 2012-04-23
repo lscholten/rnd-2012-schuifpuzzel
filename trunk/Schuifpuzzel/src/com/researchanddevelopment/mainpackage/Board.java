@@ -9,6 +9,12 @@ import android.app.Activity;
 import android.content.res.XmlResourceParser;
 import android.graphics.PointF;
 
+/**
+ * Model van het board
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class Board {
 	public static final int BOARD_SIZE = 6;
 

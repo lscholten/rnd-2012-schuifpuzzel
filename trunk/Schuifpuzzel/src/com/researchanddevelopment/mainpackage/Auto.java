@@ -3,8 +3,10 @@ package com.researchanddevelopment.mainpackage;
 import android.graphics.PointF;
 
 /**
- * @author Thom
+ * Model van autos
  * 
+ * @author Paranoid Android
+ *
  */
 public class Auto {
 	private PointF pos;

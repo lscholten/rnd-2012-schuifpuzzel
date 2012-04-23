@@ -9,6 +9,12 @@ import android.graphics.Paint;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * View van het bord
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class BoardView extends View {
 
 	ArrayList<View> autoViews;

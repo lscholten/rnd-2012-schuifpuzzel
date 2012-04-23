@@ -7,6 +7,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+/**
+ * Game Activity, beheert spel
+ * 
+ * @author Paranoid Android
+ *
+ */
 public class GameActivity extends Activity {
 	BoardView view;
 	private String resourcename;
