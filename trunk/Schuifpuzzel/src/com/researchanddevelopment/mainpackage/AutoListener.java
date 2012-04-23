@@ -2,6 +2,11 @@ package com.researchanddevelopment.mainpackage;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -14,10 +19,17 @@ public class AutoListener implements OnTouchListener {
 
 	private PointF start;
 	private Auto ac;
+	private int moves;
 	ArrayList<Auto> auto;
+	private final int level;
+	private Activity act;
+	private BoardView b;
 
-	public AutoListener(ArrayList<Auto> a) {
+	public AutoListener(ArrayList<Auto> a, Activity act, int level, BoardView b) {
 		this.auto = a;
+		this.act = act;
+		this.level = level;
+		this.b = b;
 	}
 
 	public boolean onTouch(View v, MotionEvent e) {
@@ -39,7 +51,8 @@ public class AutoListener implements OnTouchListener {
 
 			case MotionEvent.ACTION_UP:
 				if(ac != null){
-					ac.addMove();
+					this.moves++;
+					b.updateMoves(moves);
 					ac.setPos(new PointF(Math.round(ac.getPos().x), Math.round(ac.getPos().y)));
 					ac = null;
 				}
@@ -81,7 +94,11 @@ public class AutoListener implements OnTouchListener {
 						ac.setPos(oldPosition);
 					} else if (ac.isWinPosition()) {
 						ac.setPos(new PointF(Board.BOARD_SIZE-1, 2F));
-						System.out.println("win + moves: " + ac.getMoves());
+						this.moves++;
+						b.updateMoves(moves);
+						win(v);
+				
+						
 					}
 
 				}
@@ -90,6 +107,21 @@ public class AutoListener implements OnTouchListener {
 		}
 		v.invalidate();
 		return true;
+	}
+	
+	private void win(View v){
+		b.drawWin();
+		v.invalidate();
+		Database db = new Database(act.getApplicationContext());
+		
+		SQLiteDatabase dbase = db.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("gameid", this.level);
+		values.put("least_moves", this.moves);
+		dbase.update(Database.DATABASE_TABLE_NAME, values, "gameid = ? AND (least_moves > ? OR least_moves IS NULL)", new String[] {this.level + "", this.moves + ""});
+		
+		
+		
 	}
 
 }

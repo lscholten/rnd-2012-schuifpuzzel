@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlPullParserException;
+
+import android.app.Activity;
 import android.content.res.XmlResourceParser;
 import android.graphics.PointF;
 
@@ -12,6 +14,8 @@ public class Board {
 
 	private ArrayList<Auto> autos;
 	private BoardView boardView;
+	private Activity act;
+	private int level;
 	
 	/**
 	 * Creates a board from a list of cars
@@ -28,7 +32,9 @@ public class Board {
 	 * 
 	 * @param xml XMLResourceParser to use
 	 */
-	public Board(XmlResourceParser xml) {
+	public Board(XmlResourceParser xml, Activity act, int level) {
+		this.act = act;
+		this.level = level;
 		this.autos = new ArrayList<Auto>();
 
 		int type;
@@ -110,7 +116,7 @@ public class Board {
 	public void setBoardView(BoardView boardView) {
 		this.boardView = boardView;
 		boardView.addAutos(autos);
-		boardView.setOnTouchListener(new AutoListener(this.autos));
+		boardView.setOnTouchListener(new AutoListener(this.autos, act, level, this.boardView));
 	}
 	
 	
