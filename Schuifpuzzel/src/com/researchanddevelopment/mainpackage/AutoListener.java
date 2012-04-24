@@ -106,8 +106,10 @@ public class AutoListener implements OnTouchListener {
 				}
 
 				activeCar = activecar;
-				gridStartPos = new Point(Math.round(activeCar.getPos().x), Math.round(activeCar
-						.getPos().y));
+				if(activeCar != null){
+					gridStartPos = new Point(Math.round(activeCar.getPos().x), Math.round(activeCar
+							.getPos().y));
+				}
 
 				start = new PointF(e.getX(), e.getY());
 				break;
