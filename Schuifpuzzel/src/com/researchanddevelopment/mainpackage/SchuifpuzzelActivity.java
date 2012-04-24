@@ -61,8 +61,13 @@ public class SchuifpuzzelActivity extends Activity {
 		// Handle item selection
 		switch (item.getItemId()) {
 			case R.id.new_game:
+				Intent intent = new Intent();
+				intent.setClass(getApplicationContext(), GameActivity.class);
+				intent.putExtra("gameid",(int)(( Math.random() * 39)) + 1);
+				this.startActivity(intent);
 				return true;
-			case R.id.difficulty:
+			case R.id.exit:
+				this.finish();
 				return true;
 			default:
 				return false;
